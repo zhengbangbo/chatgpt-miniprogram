@@ -1,3 +1,5 @@
+import { setTabSelected } from "../../utils/tabBar"
+
 // pages/ask/ask.js
 Page({
     /**
@@ -26,7 +28,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-
+        setTabSelected(this, 0)
     },
 
     /**

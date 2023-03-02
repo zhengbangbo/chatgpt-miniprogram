@@ -127,6 +127,17 @@
             ]
         }
     ],
+    "tabBar": {
+        "custom": true,
+        "list": [
+            {
+                "pagePath": "pages/ask/ask"
+            },
+            {
+                "pagePath": "pages/home/home"
+            }
+        ]
+    },
     "usingComponents": {
         "t-demo": "./components/demo-block/index",
         "t-button": "tdesign-miniprogram/button/button",

@@ -1,12 +1,12 @@
 <!--pages/ask/ask.wxml-->
 <view>
-  <t-demo title="ChatGPT智能提问" desc="可以让AI扮演某个角色来对话">
-    <card />
-  </t-demo>
-  <t-demo >
-    <block-btn bind:ask="Ask" loading="{{loading}}"/>
-  </t-demo >
-  <t-demo >
-    <autosize answer="{{answerText}}"/>
-  </t-demo>
+    <t-demo>
+        <card />
+    </t-demo>
+    <t-demo>
+        <block-btn bind:ask="Ask" loading="{{loading}}" />
+    </t-demo>
+    <t-demo>
+        <autosize answer="{{answerText}}" />
+    </t-demo>
 </view>

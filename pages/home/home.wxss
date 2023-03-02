@@ -18,7 +18,7 @@ page {
 }
 .title-icon {
   width: 296rpx;
-  height: 80rpx;
+  height: 296rpx;
 }
 .desc {
   color: rgba(0, 0, 0, 0.4);

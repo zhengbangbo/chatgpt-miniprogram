@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "眼望四周阳光照",
+  "navigationBarTitleText": "AI 智能问答",
   "usingComponents": {
     "card": "./card",
     "block-btn": "./block-btn",

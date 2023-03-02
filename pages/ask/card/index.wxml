@@ -3,7 +3,7 @@
     t-class="external-class"
     label="输入提问内容"
     placeholder="请输入文字"
-    maxlength="500"
+    maxlength="140"
     indicator
     disableDefaultPadding="{{true}}"
     bindchange="onChange"

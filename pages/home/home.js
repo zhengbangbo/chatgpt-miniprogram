@@ -1,3 +1,4 @@
+import { setTabSelected } from '../../utils/tabBar';
 import list from './data/index';
 Page({
     data: {
@@ -59,6 +60,9 @@ Page({
         }
         return data;
     },
+    onShow: function() {
+        setTabSelected(this, 1)
+    }
 });
 
 //# sourceMappingURL=home.js.map
