@@ -1,6 +1,7 @@
 import { setTabSelected } from '../../utils/tabBar';
 Page({
     data: {
+        versionInfo: ""
     },
     onLoad(options) {
         const { path, q } = options;
@@ -58,7 +59,15 @@ Page({
         }
         return data;
     },
-    onShow: function() {
+    onLoad: function () {
+        const accountInfo = wx.getAccountInfoSync();
+        console.log(accountInfo.miniProgram.appId)
+        console.log(accountInfo.miniProgram.envVersion)
+        console.log(accountInfo.miniProgram.version)
+        const versionInfo = "当前版本：" + accountInfo.miniProgram.version + "(" + accountInfo.miniProgram.envVersion + ")"
+        this.setData({versionInfo})
+    },
+    onShow: function () {
         setTabSelected(this, 1)
     }
 });
