@@ -1,6 +1,7 @@
 Component({
     properties: {
-        loading: Boolean
+        loading: Boolean,
+        isLogin: Boolean
     },
     methods: {
         onTap: function () {

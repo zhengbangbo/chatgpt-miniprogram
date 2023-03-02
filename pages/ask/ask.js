@@ -7,14 +7,23 @@ Page({
      */
     data: {
         loading: false,
-        answerText: ""
+        answerText: "",
+        token: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
-
+        if(!this.data.token) {
+            const token = wx.getStorageSync('token')
+            if(token) {
+                this.setData({
+                    token: wx.getStorageSync('token'),
+                    btnText: '提问'
+                })
+            }
+        }
     },
 
     /**
@@ -70,6 +79,10 @@ Page({
     },
 
     Ask: function () {
+        if(!this.data.token) {
+            return
+        }
+
         const that = this
         this.setData({ loading: true })
         wx.getStorage({
@@ -85,12 +98,20 @@ Page({
                         text: res.data
                     },
                     header: {
-                        'content-type': 'application/json'
+                        'content-type': 'application/json',
+                        authorization: token
                     },
                     success(res) {
                         const data = res.data
                         console.log(data);
-                        that.setData({ answerText: res.data.answer, loading: false })
+                        if(res.statusCode === '200') {
+                            that.setData({ answerText: res.data.answer, loading: false })
+                        } else {
+                            wx.showToast({
+                                title: '出错了',
+                                icon: 'error'
+                            })
+                        }
                     }
                 })
             }

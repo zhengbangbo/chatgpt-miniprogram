@@ -1,6 +1,6 @@
 <view class="button-example">
-    <t-button wx:if="{{ !loading }}" theme="primary" size="large" block bindtap="onTap">
-            <text class="button-text">提问</text>
+    <t-button wx:if="{{ !loading }}" theme="primary" size="large" block bindtap="onTap" disabled="{{ !isLogin }}">
+            <text class="button-text">{{ isLogin ? '提问' : '未登录'}}</text>
     </t-button>
     <t-button wx:else theme="primary" size="large" block bindtap="onTap" disabled>
             <t-loading theme="spinner" size="40rpx" class="button-loading" />

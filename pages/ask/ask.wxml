@@ -4,7 +4,7 @@
         <card />
     </t-demo>
     <t-demo>
-        <block-btn bind:ask="Ask" loading="{{loading}}" />
+        <block-btn bind:ask="Ask" is-login="{{!!token}}" loading="{{loading}}" />
     </t-demo>
     <t-demo>
         <autosize answer="{{answerText}}" />
