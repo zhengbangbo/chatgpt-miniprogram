@@ -1,0 +1,1 @@
+<t-textarea label="ChatGPT回答" placeholder="ChatGPT回答结果将显示在这..." disableDefaultPadding="{{true}}" value="{{answer}}" autosize />

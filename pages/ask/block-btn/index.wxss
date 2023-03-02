@@ -1,0 +1,4 @@
+.button-example {
+  margin: 0 32rpx;
+  padding-inline: 32rpx;
+}
