@@ -1,3 +1,4 @@
+<!--components/demo-block/index.wxml-->
 <view class="demo-block {{!title && 'demo-block_notitle'}}">
   <view wx:if="{{ title || desc }}" class="demo-block__header">
     <view wx:if="{{ title }}" class="demo-block__header-title">{{ title }}</view>

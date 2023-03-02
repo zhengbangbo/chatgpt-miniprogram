@@ -1,7 +1,5 @@
 {
-  "usingComponents": {
-    "pull-down-list": "../../components/pull-down-list/index"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "更多功能",
   "navigationBarBackgroundColor": "#f6f6f6",
   "navigationBarTextStyle": "black",

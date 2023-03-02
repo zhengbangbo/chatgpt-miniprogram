@@ -1,8 +1,6 @@
 import { setTabSelected } from '../../utils/tabBar';
-import list from './data/index';
 Page({
     data: {
-        list,
     },
     onLoad(options) {
         const { path, q } = options;
