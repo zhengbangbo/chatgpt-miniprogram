@@ -38,7 +38,7 @@ Page({
     },
     onShareAppMessage() {
         return {
-            title: 'TDesign UI',
+            title: '更多功能',
             path: '/pages/home/home',
         };
     },

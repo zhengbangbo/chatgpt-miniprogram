@@ -10,6 +10,12 @@ Page({
         answerText: ""
     },
 
+    onShareAppMessage() {
+        return {
+            title: 'AI 智能问答',
+            path: '/pages/ask/ask',
+        };
+    },
     /**
      * 生命周期函数--监听页面加载
      */
