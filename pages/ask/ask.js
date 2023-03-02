@@ -1,10 +1,10 @@
 // pages/ask/ask.js
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
+        loading: false,
         answerText: ""
     },
 
@@ -66,6 +66,7 @@ Page({
 
     Ask: function () {
         const that = this
+        this.setData({ loading: true })
         wx.getStorage({
             key: "askText",
             encrypt: true, // 若开启加密存储，setStorage 和 getStorage 需要同时声明 encrypt 的值为 true
@@ -84,7 +85,7 @@ Page({
                     success(res) {
                         const data = res.data
                         console.log(data);
-                        that.setData({ answerText: res.data.answer })
+                        that.setData({ answerText: res.data.answer, loading: false })
                     }
                 })
             }
