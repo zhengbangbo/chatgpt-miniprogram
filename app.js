@@ -1,29 +1,22 @@
+import { login } from './utils/login'
 App({
     onLaunch() {
-        const token = wx.getStorageSync('token')
-
-        if (!token) {
-            wx.login({
-                timeout: 10 * 1000,
-                success({ code }) {
-                    wx.request({
-                        url: 'https://cg-api.imzbb.cc/login',
-                        data: { code },
-                        method: 'POST',
-                        success(res) {
-                            if (res.statusCode == 200) {
-                                wx.setStorage({ key: 'token', data: res.data.token })
-                            } else {
-                                wx.showToast({
-                                    title: '登录失败',
-                                    icon: 'error'
-                                })
-                            }
-                        }
-                    })
+        wx.checkSession({
+            success() {
+                console.log("session_key 未过期，并且在本生命周期一直有效");
+                const token = wx.getStorageSync('token')
+                if (!token) {
+                    console.log("session_key 未过期，但是没有找到 token");
+                    login()
                 }
-            })
-        }
+            },
+            fail() {
+                console.log("session_key 已经失效，需要重新执行登录流程");
+                wx.clearStorageSync('token')
+                login()
+            }
+        })
+
     },
 });
 
