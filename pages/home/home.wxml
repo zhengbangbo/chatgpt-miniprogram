@@ -1,15 +1,9 @@
 <view class="main">
-  <view class="title-wrap">
-    <image class="title-icon" mode="aspectFit" src="/assets/logo.png" aria-label="TDesign Logo" />
-  </view>
-  <view class="desc"> 众多功能敬请期待 </view>
-  <view class="desc"> {{ versionInfo }} </view>
-  <pull-down-list
-    wx:for="{{list}}"
-    name="{{item.name}}"
-    icon="{{item.icon}}"
-    wx:key="name"
-    childArr="{{item.childArr}}"
-    bind:click="clickHandle"
-  />
+    <view class="title-wrap" bindtap="handleTapLogo">
+        <image class="title-icon {{extraClasses}}" bindtransitionend="transitionEnd" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
+    </view>
+    <view class="desc">
+        <view> 众多功能敬请期待 </view>
+        <view> {{ versionInfo }} </view>
+    </view>
 </view>

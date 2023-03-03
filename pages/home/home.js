@@ -3,6 +3,7 @@ import { APP_VERSION } from '../../utils/config'
 
 Page({
     data: {
+        extraClasses: '',
         versionInfo: ""
     },
     onLoad(options) {
@@ -63,10 +64,21 @@ Page({
     },
     onLoad: function () {
         const versionInfo = "当前版本：" + APP_VERSION
-        this.setData({versionInfo})
+        this.setData({ versionInfo })
     },
     onShow: function () {
-        setTabSelected(this, 1)
+        setTabSelected(this, 1) 
+    },
+    handleTapLogo: function () {
+        if (this.data.extraClasses == 'logo-transition logo-moved') {
+            this.setData({
+              extraClasses: 'logo-transition'
+            })
+          } else {
+            this.setData({
+              extraClasses: 'logo-transition logo-moved'
+            })
+          }
     }
 });
 
