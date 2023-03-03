@@ -111,38 +111,44 @@ Page({
         if (!token) {
             login()
         }
-
         const that = this
-        wx.getStorage({
-            key: "askText",
-            encrypt: true, // 若开启加密存储，setStorage 和 getStorage 需要同时声明 encrypt 的值为 true
-            success(res) {
-                wx.request({
-                    url: `${BACKEND_URL_BASE}/ask_01`,
-                    method: 'POST',
-                    dataType: 'json',
-                    enableHttp2: true,
-                    data: {
-                        text: res.data
-                    },
-                    header: {
-                        'content-type': 'application/json',
-                        'x-token': token
-                    },
-                    success(res) {
-                        const data = res.data
-                        console.log(data);
-                        if (res.statusCode == '200') {
-                            that.setData({ answerText: res.data.answer, loading: false })
-                        } else {
-                            wx.showToast({
-                                title: '出错了',
-                                icon: 'error'
-                            })
-                        }
+        const askText = wx.getStorageSync('askText')
+        if(askText) {
+            wx.request({
+                url: `${BACKEND_URL_BASE}/ask_01`,
+                method: 'POST',
+                dataType: 'json',
+                enableHttp2: true,
+                data: {
+                    text: askText
+                },
+                header: {
+                    'content-type': 'application/json',
+                    'x-token': token
+                },
+                success(res) {
+                    if (res.statusCode == '200') {
+                        that.setData({ answerText: res.data.answer, loading: false })
+                    } else {
+                        wx.showToast({
+                            title: '出错了',
+                            icon: 'error'
+                        })
                     }
-                })
-            }
-        })
+                },
+                fail(err) {
+                    wx.showToast({
+                        title: '出错了',
+                        icon: 'error'
+                    }) 
+                }
+            })
+        } else {
+            wx.showToast({
+              title: '请先输入问题',
+              icon: 'error'
+            })
+            that.setData({ loading: false })
+        }
     },
 })
