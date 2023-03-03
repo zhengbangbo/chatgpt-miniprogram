@@ -1,5 +1,5 @@
 <!--pages/ask/ask.wxml-->
-<view>
+<view bindtouchstart="handletouchstart" bindtouchmove="handletouchmove">
     <t-demo>
         <card />
     </t-demo>

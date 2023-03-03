@@ -1,5 +1,6 @@
 Component({
     data: {
+        isHidden: false,
         selectedValue: 0,
         list: [
             { value: 0, icon: 'chat', ariaLabel: '问答', pagePath: '/pages/ask/ask' },

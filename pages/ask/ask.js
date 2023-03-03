@@ -1,4 +1,4 @@
-import { setTabSelected } from "../../utils/tabBar"
+import { setTabSelected, hideTabBarDebounce, showTabBarDebounce } from "../../utils/tabBar"
 import { login } from '../../utils/login'
 import { BACKEND_URL_BASE } from '../../utils/config'
 const app = getApp()
@@ -11,6 +11,8 @@ Page({
     data: {
         loading: false,
         answerText: "",
+        yStart: 0,
+        showTabBarFlag: true
     },
 
     /**
@@ -79,6 +81,29 @@ Page({
             title: 'AI 智能问答',
             path: '/pages/ask/ask',
         };
+    },
+
+    handletouchmove: function (event) {
+        const currentY = event.changedTouches[0].clientY
+        const detla = currentY - this.data.yStart
+        console.log(currentY - this.data.yStart);
+        if (detla > 75) {
+            if (!this.data.showTabBarFlag) {
+                console.log("show");
+                showTabBarDebounce(this)
+            }
+        } else if (detla > -75) {
+        } else {
+            if (this.data.showTabBarFlag) {
+                console.log("hide");
+                hideTabBarDebounce(this)
+            }
+        }
+    },
+
+    handletouchstart: function (event) {
+        console.log(event);
+        this.data.yStart = event.changedTouches[0].clientY
     },
 
     Ask: function () {
