@@ -1,4 +1,6 @@
 import { setTabSelected } from '../../utils/tabBar';
+import { APP_VERSION } from '../../utils/config'
+
 Page({
     data: {
         versionInfo: ""
@@ -60,11 +62,7 @@ Page({
         return data;
     },
     onLoad: function () {
-        const accountInfo = wx.getAccountInfoSync();
-        console.log(accountInfo.miniProgram.appId)
-        console.log(accountInfo.miniProgram.envVersion)
-        console.log(accountInfo.miniProgram.version)
-        const versionInfo = "当前版本：" + accountInfo.miniProgram.version + "(" + accountInfo.miniProgram.envVersion + ")"
+        const versionInfo = "当前版本：" + APP_VERSION
         this.setData({versionInfo})
     },
     onShow: function () {

@@ -1,8 +1,8 @@
 <view class="textarea-example">
   <t-textarea
     t-class="external-class"
-    label="输入提问内容"
-    placeholder="请输入文字"
+    label="提问"
+    placeholder="请在这输入文字"
     maxlength="140"
     indicator
     disableDefaultPadding="{{true}}"
