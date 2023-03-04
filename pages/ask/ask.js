@@ -86,23 +86,19 @@ Page({
     handletouchmove: function (event) {
         const currentY = event.changedTouches[0].clientY
         const detla = currentY - this.data.yStart
-        console.log(currentY - this.data.yStart);
         if (detla > 75) {
             if (!this.data.showTabBarFlag) {
-                console.log("show");
                 showTabBarDebounce(this)
             }
         } else if (detla > -75) {
         } else {
             if (this.data.showTabBarFlag) {
-                console.log("hide");
                 hideTabBarDebounce(this)
             }
         }
     },
 
     handletouchstart: function (event) {
-        console.log(event);
         this.data.yStart = event.changedTouches[0].clientY
     },
 
@@ -113,9 +109,9 @@ Page({
         }
         const that = this
         const askText = wx.getStorageSync('askText')
-        if(askText) {
+        if (askText) {
             wx.request({
-                url: `${BACKEND_URL_BASE}/ask_01`,
+                url: `${BACKEND_URL_BASE}/api/v1/ask`,
                 method: 'POST',
                 dataType: 'json',
                 enableHttp2: true,
@@ -128,25 +124,49 @@ Page({
                 },
                 success(res) {
                     if (res.statusCode == '200') {
-                        that.setData({ answerText: res.data.answer, loading: false })
+                        switch (res.data.code) {
+                            case 200:
+                                that.setData({ answerText: res.data.data.answer, loading: false })
+                                that.setData({ loading: false })
+                                break;
+                            case 1101:
+                            case 1102:
+                                wx.clearStorageSync("token")
+                                wx.showToast({
+                                    title: res.data.message,
+                                    icon: 'error'
+                                })
+                                that.setData({ loading: false })
+                                break;
+                            case 1201:
+                                wx.showToast({
+                                    title: res.data.message,
+                                    icon: 'error'
+                                })
+                                that.setData({ loading: false })
+                                break;
+                        }
+                        console.log(res.data);
                     } else {
                         wx.showToast({
                             title: '出错了',
                             icon: 'error'
                         })
+                        that.setData({ loading: false })
                     }
                 },
                 fail(err) {
                     wx.showToast({
                         title: '出错了',
                         icon: 'error'
-                    }) 
+                    })
+                    that.setData({ loading: false })
                 }
             })
         } else {
             wx.showToast({
-              title: '请先输入问题',
-              icon: 'error'
+                title: '请先输入问题',
+                icon: 'error'
             })
             that.setData({ loading: false })
         }

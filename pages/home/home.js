@@ -8,7 +8,6 @@ Page({
     },
     onLoad(options) {
         const { path, q } = options;
-        console.log(path);
         // 小程序跳转各个小程序组件库
         if (q) {
             // Navigator.gotoPage(path, rest);

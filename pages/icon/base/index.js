@@ -243,7 +243,6 @@ Component({
 
   methods: {
     onIconTap(event) {
-      console.log();
       const { name, type } = event.currentTarget.dataset;
       if (type === 'prefix') {
         return;
