@@ -1,10 +1,10 @@
 <view class="main">
-    <view class="title-wrap" bindtap="handleTapLogo">
-        <image class="title-icon {{extraClasses}}" bindtransitionend="transitionEnd" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
+    <view class="logo-container" bindtransitionend="transitionEnd" >
+        <image class="logo  {{extraClasses}}" bindtap="handleTapLogo" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
     </view>
     
     <view class="desc">
         <textarea value="{{about}}" auto-height disabled/>
-        <view> {{ versionInfo }} </view>
+     <view> {{ versionInfo }} </view>
     </view>
 </view>

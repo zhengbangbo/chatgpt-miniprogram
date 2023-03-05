@@ -12,13 +12,12 @@
     flex-direction: column;
     overflow-y: scroll;
     width: 100vw;
-    margin-block: 10rpx;
+    margin: 10rpx 0;
 }
 
 .more-container {
     align-self: flex-end;
     justify-self: end;
-    padding-inline: 32rpx;
-    padding-block: 5rpx;
+    padding: 5rpx 32rpx 10rpx 32rpx;
     color: rgb(185, 196, 206);
 }

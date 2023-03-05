@@ -1,9 +1,8 @@
 <!--pages/ask/ask.wxml-->
 <view class="page-container">
-    <view class="result-container">
-        <result hidden="{{messages === '[]'}}" wx:for="{{messages}}" wx:for-item="msg"  role="{{msg.role}}" content="{{msg.content}}"
-        wx:key="index"
-         class="result-item" />
+    <view class="result-container" hidden="{{messages === '[]'}}">
+        <result  wx:for="{{messages}}" wx:for-item="msg"  role="{{msg.role}}" content="{{msg.content}}"
+        wx:key="index"/>
     </view>
     <view >
         <card class="input-container" askText="{{askText}}" />
