@@ -5,6 +5,7 @@
     max-height: 100vh;
 
 }
+
 .result-container {
     display: flex;
     border-radius: 10rpx;
@@ -14,3 +15,10 @@
     margin-block: 10rpx;
 }
 
+.more-container {
+    align-self: flex-end;
+    justify-self: end;
+    padding-inline: 32rpx;
+    padding-block: 5rpx;
+    color: rgb(185, 196, 206);
+}

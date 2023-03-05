@@ -1,4 +1,4 @@
 <view class="result-item">
-    <textarea value="{{content}}" auto-height disable-default-padding disabled>
+    <textarea class="{{role}}" value="{{content}}" auto-height disable-default-padding disabled>
     </textarea>
 </view>

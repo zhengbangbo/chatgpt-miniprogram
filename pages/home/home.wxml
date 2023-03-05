@@ -2,8 +2,9 @@
     <view class="title-wrap" bindtap="handleTapLogo">
         <image class="title-icon {{extraClasses}}" bindtransitionend="transitionEnd" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
     </view>
+    
     <view class="desc">
-        <view> 众多功能敬请期待 </view>
+        <textarea value="{{about}}" auto-height disabled/>
         <view> {{ versionInfo }} </view>
     </view>
 </view>

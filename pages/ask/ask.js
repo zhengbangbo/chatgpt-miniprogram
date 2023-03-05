@@ -188,5 +188,10 @@ Page({
             key: 'messages',
             data: '[]'
         })
+    },
+    handleMore() {
+        wx.navigateTo({
+          url: '/pages/home/home',
+        })
     }
 })

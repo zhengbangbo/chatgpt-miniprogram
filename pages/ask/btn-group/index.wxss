@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: row;
     margin: 15rpx 32rpx;
-    gap: 4rpx;
+    gap: 12rpx;
 }
 
 .send-button {
-    width: calc(70% - 20rpx);
+    width: calc(70% - 6rpx);
 }
 
 .clear-button {
-    width: calc(30% - 20rpx);
+    width: calc(30% - 6rpx);
 }

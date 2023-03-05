@@ -1,8 +1,16 @@
 .result-item {
     max-width: 100%;
     margin-inline: 32rpx;
-    margin-block-start: 10rpx;
+    margin-block-start: 12rpx;
     padding: 20rpx;
     background-color: white;
     border-radius: 10rpx;
+}
+
+.user {
+    color:slategray
+}
+
+.assistant {
+    color:rgb(10, 15, 20)
 }
