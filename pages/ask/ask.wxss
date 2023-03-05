@@ -1,10 +1,16 @@
 /* pages/ask/ask.wxss */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+
+}
 .result-container {
     display: flex;
     border-radius: 10rpx;
     flex-direction: column;
     overflow-y: scroll;
     width: 100vw;
-    margin-block: 20rpx;
+    margin-block: 10rpx;
 }
 

@@ -3,7 +3,3 @@
   background-color: #fff;
   border-radius: 18rpx;
 }
-
-.external-class {
-  height: 60%;
-}

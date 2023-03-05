@@ -10,7 +10,7 @@ Page({
     data: {
         loading: false,
         messages: [],
-        answerText: "",
+        askText: "",
         yStart: 0,
         showTabBarFlag: true
     },

@@ -13,6 +13,6 @@ export function flushMessages(that) {
 
 export function clearMessages(that) {
     that.setData({
-        messages: '[]'
+        messages: []
     })
 }

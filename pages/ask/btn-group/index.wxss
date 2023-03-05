@@ -1,14 +1,14 @@
 .button-group {
     display: flex;
     flex-direction: row;
-    margin: 12rpx 32rpx;
+    margin: 15rpx 32rpx;
     gap: 4rpx;
 }
 
 .send-button {
-    width: calc(70% - 16rpx);
+    width: calc(70% - 20rpx);
 }
 
 .clear-button {
-    width: calc(30% - 16rpx);
+    width: calc(30% - 20rpx);
 }
