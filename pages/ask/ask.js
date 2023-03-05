@@ -1,5 +1,4 @@
-import { setTabSelected, hideTabBarDebounce, showTabBarDebounce } from "../../utils/tabBar"
-import { login } from '../../utils/login'
+import { flushMessages, clearMessages } from '../../utils/messages'
 import { BACKEND_URL_BASE } from '../../utils/config'
 const app = getApp()
 
@@ -10,6 +9,7 @@ Page({
      */
     data: {
         loading: false,
+        messages: [],
         answerText: "",
         yStart: 0,
         showTabBarFlag: true
@@ -33,8 +33,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        // 设置 tabBar 显示状态
-        setTabSelected(this, 0)
         if (!this.data.login) {
             const token = wx.getStorageSync('token')
             if (token) {
@@ -43,6 +41,8 @@ Page({
                 })
             }
         }
+        // 刷新 messages
+        flushMessages(this)
     },
 
     /**
@@ -83,71 +83,80 @@ Page({
         };
     },
 
-    handletouchmove: function (event) {
-        const currentY = event.changedTouches[0].clientY
-        const detla = currentY - this.data.yStart
-        if (detla > 75) {
-            if (!this.data.showTabBarFlag) {
-                showTabBarDebounce(this)
-            }
-        } else if (detla > -75) {
-        } else {
-            if (this.data.showTabBarFlag) {
-                hideTabBarDebounce(this)
-            }
-        }
-    },
-
-    handletouchstart: function (event) {
-        this.data.yStart = event.changedTouches[0].clientY
-    },
-
-    Ask: function () {
-        const token = wx.getStorageSync('token')
-        if (!token) {
-            login()
-        }
+    Send() {
         const that = this
-        const askText = wx.getStorageSync('askText')
-        if (askText) {
+        try {
+            const token = wx.getStorageSync('token')
+            const askText = wx.getStorageSync('askText')
+
+            if (askText === '') {
+                throw Error('请输入文字')
+            }
+            let messages = JSON.parse(wx.getStorageSync('messages'))
+            const new_user_message = { "role": "user", "content": askText }
+            messages.push(new_user_message)
+            that.setData({
+                askText: ""
+            })
+
             wx.request({
                 url: `${BACKEND_URL_BASE}/api/v1/ask`,
                 method: 'POST',
                 dataType: 'json',
                 enableHttp2: true,
                 data: {
-                    text: askText
+                    text: JSON.stringify(messages)
                 },
                 header: {
                     'content-type': 'application/json',
                     'x-token': token
                 },
-                success(res) {
-                    if (res.statusCode == '200') {
-                        switch (res.data.code) {
+                success({ statusCode, data }) {
+                    if (statusCode == '200') {
+                        switch (data.code) {
                             case 200:
-                                that.setData({ answerText: res.data.data.answer, loading: false })
-                                that.setData({ loading: false })
+                                const new_assistant_message = {
+                                    "role": "assistant",
+                                    "content": data.data.answer
+                                }
+                                messages.push(new_assistant_message)
+                                that.setData({ messages, askText: "" })
+                                wx.setStorage({
+                                    key: 'messages',
+                                    data: JSON.stringify(messages)
+                                })
                                 break;
                             case 1101:
                             case 1102:
                                 wx.clearStorageSync("token")
                                 wx.showToast({
-                                    title: res.data.message,
+                                    title: data.message,
                                     icon: 'error'
                                 })
-                                that.setData({ loading: false })
                                 break;
-                            case 1201:
+                            case 2001:
                                 wx.showToast({
-                                    title: res.data.message,
+                                    title: data.message,
+                                    icon: 'success'
+                                })
+                                break
+                            case 1201:
+                            case 1501:
+                            case 1502:
+                            default:
+                                wx.showToast({
+                                    title: data.message,
                                     icon: 'error'
                                 })
-                                that.setData({ loading: false })
                                 break;
                         }
-                        console.log(res.data);
+                        that.setData({ loading: false })
+                        console.log(data);
                     } else {
+                        wx.setStorage({
+                            key: 'messages',
+                            data: '[]'
+                        })
                         wx.showToast({
                             title: '出错了',
                             icon: 'error'
@@ -155,7 +164,7 @@ Page({
                         that.setData({ loading: false })
                     }
                 },
-                fail(err) {
+                fail() {
                     wx.showToast({
                         title: '出错了',
                         icon: 'error'
@@ -163,12 +172,21 @@ Page({
                     that.setData({ loading: false })
                 }
             })
-        } else {
+        } catch ({ message }) {
             wx.showToast({
-                title: '请先输入问题',
+                title: message,
                 icon: 'error'
             })
+            console.error("Error(Ask): ", message)
             that.setData({ loading: false })
+        } finally {
         }
     },
+    Clear() {
+        clearMessages(this)
+        wx.setStorage({
+            key: 'messages',
+            data: '[]'
+        })
+    }
 })

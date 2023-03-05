@@ -2,7 +2,7 @@
   "navigationBarTitleText": "AI 智能问答",
   "usingComponents": {
     "card": "./card",
-    "block-btn": "./block-btn",
-    "autosize": "./autosize"
+    "btn-group": "./btn-group",
+    "result": "./result"
   }
 }

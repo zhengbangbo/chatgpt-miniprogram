@@ -1,1 +1,10 @@
 /* pages/ask/ask.wxss */
+.result-container {
+    display: flex;
+    border-radius: 10rpx;
+    flex-direction: column;
+    overflow-y: scroll;
+    width: 100vw;
+    margin-block: 20rpx;
+}
+

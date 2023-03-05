@@ -5,15 +5,18 @@ Component({
         loading: Boolean
     },
     methods: {
-        onTap: function () {
+        handleSend() {
             this.setData({ loading: true })
             const token = wx.getStorageSync('token')
             if (!token) {
                 login()
                 this.setData({ loading: false })
             } else {
-                this.triggerEvent('ask')
+                this.triggerEvent('send')
             }
+        },
+        handleClear() {
+            this.triggerEvent('clear')
         }
     }
 });

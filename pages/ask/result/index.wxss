@@ -1,0 +1,8 @@
+.result-item {
+    max-width: 100%;
+    margin-inline: 36rpx;
+    margin-block-start: 10rpx;
+    padding: 20rpx;
+    background-color: white;
+    border-radius: 10rpx;
+}

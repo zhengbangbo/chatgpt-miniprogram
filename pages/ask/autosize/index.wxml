@@ -1,1 +1,0 @@
-<t-textarea label="回答" placeholder="回答将显示在这..." disableDefaultPadding="{{true}}" value="{{answer}}" autosize />

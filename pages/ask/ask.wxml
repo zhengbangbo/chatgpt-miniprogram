@@ -1,12 +1,12 @@
 <!--pages/ask/ask.wxml-->
-<view bindtouchstart="handletouchstart" bindtouchmove="handletouchmove">
-    <t-demo>
+<view style="height: 100vh;">
+    <view style="height: 70%;" class="result-container">
+        <result wx:for="{{messages}}" wx:for-item="msg"  role="{{msg.role}}" content="{{msg.content}}"
+        wx:key="index"
+         class="result-item" />
+    </view>
+    <view style="height: 30%;">
         <card />
-    </t-demo>
-    <t-demo>
-        <block-btn bind:ask="Ask" loading="{{loading}}" />
-    </t-demo>
-    <t-demo>
-        <autosize answer="{{answerText}}" />
-    </t-demo>
+        <btn-group bind:send="Send" bind:clear="Clear" loading="{{loading}}" />
+    </view>
 </view>

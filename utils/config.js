@@ -4,4 +4,4 @@ export const BACKEND_URL_BASE =
         "https://cg-api.imzbb.cc" :
     // 体验版 + 开发版
         "http://192.168.31.236:4897"
-export const APP_VERSION = "0.1.0"
+export const APP_VERSION = "0.2.0"
