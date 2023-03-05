@@ -6,10 +6,16 @@
     border-radius: 10rpx;
 }
 
+.text {
+    min-width: 100%;
+    font-size: 30rpx;
+    line-height: 30rpx;
+}
+
 .user {
-    color:slategray
+    color: slategray
 }
 
 .assistant {
-    color:rgb(10, 15, 20)
+    color: rgb(10, 15, 20)
 }

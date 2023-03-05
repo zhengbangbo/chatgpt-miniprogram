@@ -1,4 +1,6 @@
-<view class="result-item">
-    <textarea style="width: 100%;" class="{{role}}" value="{{content}}" auto-height disabled>
+<view class="result-item" >
+    <textarea class="text {{role}}"
+     value="{{content}}"
+     auto-height disabled>
     </textarea>
 </view>

@@ -92,12 +92,9 @@ Page({
             if (askText === '') {
                 throw Error('请输入文字')
             }
-            let messages = JSON.parse(wx.getStorageSync('messages'))
+            const old_messages = JSON.parse(wx.getStorageSync('messages'))
             const new_user_message = { "role": "user", "content": askText }
-            messages.push(new_user_message)
-            that.setData({
-                askText: ""
-            })
+            const messages = [...old_messages, new_user_message]
 
             wx.request({
                 url: `${BACKEND_URL_BASE}/api/v1/ask`,
@@ -119,12 +116,9 @@ Page({
                                     "role": "assistant",
                                     "content": data.data.answer
                                 }
-                                messages.push(new_assistant_message)
-                                that.setData({ messages, askText: "" })
-                                wx.setStorage({
-                                    key: 'messages',
-                                    data: JSON.stringify(messages)
-                                })
+                                const new_messages = [...messages, new_assistant_message]
+                                that.setData({ messages: new_messages })
+                                wx.setStorageSync('messages', JSON.stringify(new_messages))
                                 break;
                             case 1101:
                             case 1102:
@@ -150,7 +144,7 @@ Page({
                                 })
                                 break;
                         }
-                        that.setData({ loading: false })
+                        that.setData({ loading: false, askText: "" })
                         console.log(data);
                     } else {
                         wx.setStorage({
@@ -191,7 +185,7 @@ Page({
     },
     handleMore() {
         wx.navigateTo({
-          url: '/pages/home/home',
+            url: '/pages/home/home',
         })
     }
 })

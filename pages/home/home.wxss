@@ -4,8 +4,9 @@ page {
 
 .main {
     display: flex;
+    height: 100vh;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     box-sizing: border-box;
@@ -31,14 +32,13 @@ page {
 
 .logo-container {
     border-radius: 100%;
-    background: rgb(97,229,37);
-background: radial-gradient(circle, rgba(97,229,37,1) 7%, rgba(121,68,9,0.19233630952380953) 30%, rgba(255,255,255,1) 80%);
+    background: rgb(42,229,37);
+background: radial-gradient(circle, rgba(42,229,37,1) 0%, rgba(42,229,37,0.444437149859944) 31%, rgba(42,229,37,0) 62%);
 }
 
 .logo {
     height: 296rpx;
     width: 296rpx;
-
 }
 
 .logo-transition {
@@ -47,4 +47,9 @@ background: radial-gradient(circle, rgba(97,229,37,1) 7%, rgba(121,68,9,0.192336
 
 .logo-moved {
     transform: rotateY(180deg);
+}
+
+.version-info {
+    position: absolute;
+    bottom: 30rpx;
 }

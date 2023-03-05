@@ -1,4 +1,6 @@
 Component({
+    data: {
+    },
     properties: {
         role: String,
         content: String
@@ -7,5 +9,7 @@ Component({
         attached() {
             // console.log(content);
         }
+    },
+    methods: {
     }
 });

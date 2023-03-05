@@ -5,6 +5,6 @@
     
     <view class="desc">
         <textarea value="{{about}}" auto-height disabled/>
-     <view> {{ versionInfo }} </view>
+     <view class="version-info"> {{ versionInfo }} </view>
     </view>
 </view>
