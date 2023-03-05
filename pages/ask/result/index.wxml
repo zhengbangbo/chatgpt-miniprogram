@@ -1,6 +1,8 @@
 <view class="result-item" >
     <textarea class="text {{role}}"
      value="{{content}}"
-     auto-height disabled>
+     maxlength="-1"
+     auto-height
+     disabled>
     </textarea>
 </view>
