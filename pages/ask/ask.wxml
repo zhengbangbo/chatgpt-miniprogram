@@ -9,6 +9,6 @@
         <btn-group bind:send="Send" bind:clear="Clear" loading="{{loading}}" />
     </view>
     <view class="more-container" bindtap="handleMore">
-        更多
+        工具箱
     </view>
 </view>

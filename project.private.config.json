@@ -61,6 +61,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "周报生成器",
+                    "pathName": "pages/tool/tool",
+                    "query": "id=4",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

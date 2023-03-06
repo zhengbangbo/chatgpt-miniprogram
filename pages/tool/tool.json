@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "AI 工具箱",
+    "usingComponents": {
+        "card": "/components/card",
+        "t-button": "./t-button/t-button",
+        "result": "/components/result"
+    }
+}

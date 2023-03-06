@@ -1,0 +1,9 @@
+<!--pages/tool/t-button/t-button.wxml-->
+<view class="button-container">
+    <t-button wx:if="{{ !loading }}" theme="primary" size="large" catch:tap="handleTap" block>
+        <text class="button-text">{{text}}</text>
+    </t-button>
+    <t-button wx:else theme="primary" size="large" block catch:tap="handleTap" disabled>
+        <t-loading theme="spinner" size="40rpx" class="button-loading" />
+    </t-button>
+</view>

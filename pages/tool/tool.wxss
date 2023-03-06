@@ -1,0 +1,10 @@
+/* pages/tool/tool.wxss */
+.tool-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 60rpx;
+    padding: 12rpx 32rpx 32rpx 32rpx;
+}

@@ -1,7 +1,9 @@
 {
     "pages": [
         "pages/ask/ask",
-        "pages/home/home"
+        "pages/list/list",
+        "pages/home/home",
+        "pages/tool/tool"
     ],
     "subpackages": [],
     "usingComponents": {

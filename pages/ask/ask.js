@@ -185,7 +185,7 @@ Page({
     },
     handleMore() {
         wx.navigateTo({
-            url: '/pages/home/home',
+            url: '/pages/list/list',
         })
     }
 })
