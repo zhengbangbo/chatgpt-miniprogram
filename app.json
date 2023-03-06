@@ -1,8 +1,8 @@
 {
     "pages": [
         "pages/ask/ask",
-        "pages/list/list",
         "pages/home/home",
+        "pages/list/list",
         "pages/tool/tool"
     ],
     "subpackages": [],

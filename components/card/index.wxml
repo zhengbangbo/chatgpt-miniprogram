@@ -1,7 +1,7 @@
 <view class="textarea-example">
   <t-textarea
     placeholder="请在这输入文字"
-    maxlength="140"
+    maxlength="{{maxLength}}"
     autosize
     indicator
     value="{{askText}}"

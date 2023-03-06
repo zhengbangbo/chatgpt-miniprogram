@@ -8,10 +8,14 @@ Page({
     data: {
         id: -1,
         title: "",
+        description: "",
         content: "",
         askText: "",
         loading: false,
-        sent: false
+        sent: false,
+        border: {
+            color: 'red',
+        }
     },
 
     /**
@@ -25,8 +29,8 @@ Page({
             success({ data }) {
                 const prompts = data
                 const prompt = prompts.find(item => item.id === tool_id)
-                const { id, name } = prompt
-                that.setData({ id, title: name })
+                const { id, name, description } = prompt
+                that.setData({ id, title: name, description })
             }
         })
     },

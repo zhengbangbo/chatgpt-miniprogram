@@ -19,5 +19,6 @@
     align-self: flex-end;
     justify-self: end;
     padding: 5rpx 32rpx 10rpx 32rpx;
-    color: rgb(185, 196, 206);
+    color: rgb(243, 240, 74);
+    text-shadow: 0 0 10rpx #fff, 0 0 20rpx #00f, 0 0 30rpx #fff, 0 0 40rpx #00f;
 }

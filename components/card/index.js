@@ -1,6 +1,7 @@
 Component({
     properties: {
-        askText: String
+        askText: String,
+        maxLength: Number
     },
     methods: {
         onChange: function (element) {

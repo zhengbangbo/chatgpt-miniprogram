@@ -8,3 +8,8 @@
     font-size: 60rpx;
     padding: 12rpx 32rpx 32rpx 32rpx;
 }
+
+.description {
+    font-size: 32rpx;
+    padding: 12rpx 32rpx 32rpx 32rpx;
+}

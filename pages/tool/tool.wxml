@@ -1,8 +1,8 @@
 <!--pages/tool/tool.wxml-->
 <view class="tool-container">
     <text class="title">{{title}}</text>
-    <text class="descript">{{descript}} </text>
-    <card askText="{{askText}}" />
+    <text class="description">{{description}} </text>
+    <card askText="{{askText}}" maxLength="{{-1}}" />
     <t-button bind:send="handleSend" text="发送" loading="{{loading}}"></t-button>
     <block wx:if="{{sent}}">
         <result content="{{content}}" />

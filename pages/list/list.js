@@ -21,9 +21,9 @@ Page({
             success({ data }) {
                 console.log(data);
                 const result = data.reduce((acc, cur) => {
-                    const { id, name, category } = cur;
+                    const { id, name, category, description } = cur;
                     const foundCategory = acc.find((item) => item.title === category);
-                    const newItem = { label: name, id };
+                    const newItem = { label: name, id, description };
                     if (foundCategory) {
                         foundCategory.items.push(newItem);
                     } else {
@@ -39,10 +39,22 @@ Page({
     },
     onSideBarChange(e) {
         const { value } = e.detail;
-        console.log(value);
-        this.setData({ sideBarIndex: value });
+
+        this.setData({ sideBarIndex: value, scrollTop: this.offsetTopList[value] });
     },
-    handelSelectTool(e) {
-        console.log(e);
-    }
+    onScroll(e) {
+        const { scrollTop } = e.detail;
+        const threshold = 50; // 下一个标题与顶部的距离
+
+        if (scrollTop < threshold) {
+            this.setData({ sideBarIndex: 0 });
+            return;
+        }
+
+        const index = this.offsetTopList.findIndex((top) => top > scrollTop && top - scrollTop <= threshold);
+
+        if (index > -1) {
+            this.setData({ sideBarIndex: index });
+        }
+    },
 });

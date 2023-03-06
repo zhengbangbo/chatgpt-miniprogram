@@ -171,7 +171,6 @@ Page({
                 title: message,
                 icon: 'error'
             })
-            console.error("Error(Ask): ", message)
             that.setData({ loading: false })
         } finally {
         }

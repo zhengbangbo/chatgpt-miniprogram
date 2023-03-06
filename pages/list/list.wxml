@@ -1,17 +1,16 @@
-<!--pages/list/list.wxml-->
 <view class="side-bar-wrapper">
     <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
-        <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" disabled="{{item.disabled}}" badge-props="{{item.badgeProps}}" />
+        <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" />
     </t-side-bar>
-    <view class="content" style="transform: translateY( -{{sideBarIndex * 100}}% )">
-        <scroll-view wx:for="{{categories}}" wx:key="index" class="section" scroll-y scroll-with-animation show-scrollbar="{{false}}">
+    <scroll-view class="content" scroll-y scroll-with-animation scroll-top="{{scrollTop}}" bind:scroll="onScroll">
+        <view wx:for="{{categories}}" wx:key="index" class="section">
             <view class="title">{{item.title || item.label}}</view>
-            <t-cell-group>
-                <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo" >
-                    <t-cell title="{{cargo.label}}" hover url="/pages/tool/tool?id={{cargo.id}}">
-                    </t-cell>
+            <t-grid column="{{2}}" border="{{border}}" >
+                <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
+                    <t-grid-item text="{{cargo.label}}" hover url="/pages/tool/tool?id={{cargo.id}}">
+                    </t-grid-item>
                 </block>
-            </t-cell-group>
-        </scroll-view>
-    </view>
+            </t-grid>
+        </view>
+    </scroll-view>
 </view>

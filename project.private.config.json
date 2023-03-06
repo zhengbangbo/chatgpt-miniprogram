@@ -68,6 +68,13 @@
                     "query": "id=4",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "AI 工具箱",
+                    "pathName": "pages/list/list",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

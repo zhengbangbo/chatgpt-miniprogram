@@ -5,7 +5,7 @@
         wx:key="index"/>
     </view>
     <view >
-        <card class="input-container" askText="{{askText}}" />
+        <card class="input-container" askText="{{askText}}" maxLength="{{140}}" />
         <btn-group bind:send="Send" bind:clear="Clear" loading="{{loading}}" />
     </view>
     <view class="more-container" bindtap="handleMore">
