@@ -4,4 +4,4 @@ export const BACKEND_URL_BASE = wx.getAccountInfoSync().miniProgram.envVersion =
     : wx.getAccountInfoSync().miniProgram.envVersion === "trial"
         ? "https://cg-api.imzbb.cc"  // 体验版
         : "https://cg-api.imzbb.cc"; //正式版
-export const APP_VERSION = "0.2.1"
+export const APP_VERSION = "0.3.0"

@@ -102,18 +102,6 @@ Page({
     handleCopy() {
         const that = this
         console.log("copy");
-        wx.setClipboardData({
-            data: that.data.content,
-            success(res) {
-                wx.getClipboardData({
-                    success(res) {
-                        console.log(res.data) // data
-                    }
-                })
-            },
-            fail(err) {
-                console.log(err);
-            }
-        })
+        wx.setClipboardData({ data: that.data.content })
     }
 })
