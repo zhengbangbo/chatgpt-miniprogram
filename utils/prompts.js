@@ -35,7 +35,8 @@ export function postPrompt(that, id, prompt) {
                     switch (data.code) {
                         case 200:
                             that.setData({
-                                content: data.data.answer
+                                content: data.data.answer,
+                                showContent: true
                             })
                             break;
                         case 1101:
@@ -63,7 +64,7 @@ export function postPrompt(that, id, prompt) {
                             break;
                     }
                     that.setData({
-                        loading: false, askText: ""
+                        loading: false
                     })
                 } else {
                     wx.setStorage({

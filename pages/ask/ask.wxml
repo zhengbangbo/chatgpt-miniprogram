@@ -1,5 +1,6 @@
 <!--pages/ask/ask.wxml-->
 <view class="page-container">
+    <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <view class="result-container" hidden="{{messages === '[]'}}">
         <result  wx:for="{{messages}}" wx:for-item="msg"  role="{{msg.role}}" content="{{msg.content}}"
         wx:key="index"/>

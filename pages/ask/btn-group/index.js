@@ -6,12 +6,22 @@ Component({
     },
     methods: {
         handleSend() {
+            const that = this
             this.setData({ loading: true })
+            wx.getStorage({
+                key: 'token',
+                success({ data }) {
+
+                },
+                fail() {
+                    login()
+                    that.setData({ loading: false })
+                }
+            })
             const token = wx.getStorageSync('token')
             if (!token) {
-                login()
-                this.setData({ loading: false })
             } else {
+                console.log('send');
                 this.triggerEvent('send')
             }
         },

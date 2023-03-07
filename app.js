@@ -1,23 +1,12 @@
-import { getAbout } from './utils/about';
 import { login } from './utils/login'
 import { getPrompts } from './utils/prompts';
+import { initMessages } from './utils/messages'
 
 App({
     onLaunch() {
+        initMessages();
         login();
-        getAbout();
         getPrompts();
-        wx.getStorage({
-            key: 'messages',
-            success({ data }) {
-            },
-            fail() {
-                wx.setStorage({
-                    key: "messages",
-                    data: "[]"
-                })
-            }
-        })
     },
     onShow() {
     }

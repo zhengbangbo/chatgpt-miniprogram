@@ -1,3 +1,14 @@
+export function initMessages() {
+    wx.getStorage({
+        key: 'messages',
+        fail() {
+            wx.setStorage({
+                key: "messages",
+                data: "[]"
+            })
+        }
+    })
+}
 export function flushMessages(that) {
     wx.getStorage({
         key: 'messages',

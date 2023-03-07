@@ -1,18 +1,21 @@
 // pages/tool/tool.js
 import { postPrompt } from "../../utils/prompts"
+import { initNotice } from '../../utils/notice'
 
 Page({
     /**
      * 页面的初始数据
      */
     data: {
+        isError: false,
+        errorMessage: "",
         id: -1,
         title: "",
         description: "",
+        showContent: false,
         content: "",
         askText: "",
         loading: false,
-        sent: false,
         border: {
             color: 'red',
         }
@@ -46,6 +49,15 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        if (!this.data.login) {
+            const token = wx.getStorageSync('token')
+            if (token) {
+                this.setData({
+                    login: true,
+                })
+            }
+        }
+        initNotice(this)
 
     },
 
@@ -90,7 +102,6 @@ Page({
         const that = this
         this.setData({
             loading: true,
-            sent: true
         })
         wx.getStorage({
             key: "askText",

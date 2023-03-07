@@ -1,10 +1,11 @@
 <!--pages/tool/tool.wxml-->
 <view class="tool-container">
+    <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <text class="title">{{title}}</text>
     <text class="description">{{description}} </text>
     <card askText="{{askText}}" maxLength="{{-1}}" />
     <t-button bind:send="handleSend" text="发送" loading="{{loading}}"></t-button>
-    <block wx:if="{{sent}}">
+    <block wx:if="{{showContent}}">
         <result content="{{content}}" />
         <t-button bind:copy="handleCopy" text="复制" loading="{{loading}}"></t-button>
     </block>

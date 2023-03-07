@@ -23,6 +23,8 @@ export function login() {
                     getToken()
                 }
             })
+        },
+        complete() {
         }
     })
 
@@ -30,10 +32,8 @@ export function login() {
 
 function getToken() {
     wx.login({
-        timeout: 5 * 1000,
         success({ code }) {
             wx.request({
-                timeout: 5 * 1000,
                 url: `${BACKEND_URL_BASE}/api/v1/login`,
                 data: { code },
                 method: 'POST',
@@ -73,6 +73,6 @@ function getToken() {
                 title: '网络异常',
                 icon: 'error'
             })
-        }
+        },
     })
 }

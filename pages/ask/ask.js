@@ -1,6 +1,6 @@
 import { flushMessages, clearMessages } from '../../utils/messages'
 import { BACKEND_URL_BASE } from '../../utils/config'
-const app = getApp()
+import { initNotice } from '../../utils/notice'
 
 // pages/ask/ask.js
 Page({
@@ -8,6 +8,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        isError: false,
+        errorMessage: "",
         loading: false,
         messages: [],
         askText: "",
@@ -41,6 +43,7 @@ Page({
                 })
             }
         }
+        initNotice(this)
         // 刷新 messages
         flushMessages(this)
     },
@@ -86,6 +89,7 @@ Page({
     Send() {
         const that = this
         try {
+            console.log('Send');
             const token = wx.getStorageSync('token')
             const askText = wx.getStorageSync('askText')
 
@@ -96,6 +100,7 @@ Page({
             const new_user_message = { "role": "user", "content": askText }
             const messages = [...old_messages, new_user_message]
 
+            console.log();
             wx.request({
                 url: `${BACKEND_URL_BASE}/api/v1/ask`,
                 method: 'POST',

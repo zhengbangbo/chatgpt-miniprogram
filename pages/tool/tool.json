@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "AI 工具箱",
     "usingComponents": {
+        "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
         "card": "/components/card",
         "t-button": "./t-button/t-button",
         "result": "/components/result"
