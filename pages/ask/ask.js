@@ -1,4 +1,5 @@
-import { flushMessages, clearMessages } from '../../utils/messages'
+import { clearMessages, saveMessages,loadMessages } from '../../utils/messages'
+import { loadToken } from '../../utils/token'
 import { BACKEND_URL_BASE } from '../../utils/config'
 import { initNotice } from '../../utils/notice'
 
@@ -14,6 +15,7 @@ Page({
         messages: [],
         askText: "",
         yStart: 0,
+        token: "",
         showTabBarFlag: true
     },
 
@@ -21,7 +23,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-
     },
 
     /**
@@ -35,31 +36,28 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        initNotice(this)
+        loadMessages(this)
         if (!this.data.login) {
+            loadToken(this)
             const token = wx.getStorageSync('token')
-            if (token) {
-                this.setData({
-                    login: true,
-                })
+            if (this.data.token) {
+                this.setData({login: true})
             }
         }
-        initNotice(this)
-        // 刷新 messages
-        flushMessages(this)
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide() {
-
+        saveMessages(this)
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
     },
 
     /**
@@ -91,13 +89,15 @@ Page({
         try {
             console.log('Send');
             const token = wx.getStorageSync('token')
-            // const askText = wx.getStorageSync('askText')
+            if (!token) {
+                throw Error('请稍等')
+            }
             const askText = this.data.askText
 
             if (this.data.askText === '') {
                 throw Error('请输入文字')
             }
-            const old_messages = JSON.parse(wx.getStorageSync('messages'))
+            const old_messages = this.data.messages
             const new_user_message = { "role": "user", "content": askText }
             const messages = [...old_messages, new_user_message]
 
@@ -124,7 +124,6 @@ Page({
                                 }
                                 const new_messages = [...messages, new_assistant_message]
                                 that.setData({ messages: new_messages })
-                                wx.setStorageSync('messages', JSON.stringify(new_messages))
                                 break;
                             case 1101:
                             case 1102:
@@ -153,10 +152,7 @@ Page({
                         that.setData({ loading: false, askText: "" })
                         console.log(data);
                     } else {
-                        wx.setStorage({
-                            key: 'messages',
-                            data: '[]'
-                        })
+                        console.log('发送ask请求报错');
                         wx.showToast({
                             title: '出错了',
                             icon: 'error'
@@ -183,10 +179,6 @@ Page({
     },
     Clear() {
         clearMessages(this)
-        wx.setStorage({
-            key: 'messages',
-            data: '[]'
-        })
     },
     handleMore() {
         wx.navigateTo({

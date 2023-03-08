@@ -67,10 +67,6 @@ export function postPrompt(that, id, prompt) {
                         loading: false
                     })
                 } else {
-                    wx.setStorage({
-                        key: 'messages',
-                        data: '[]'
-                    })
                     wx.showToast({
                         title: '出错了',
                         icon: 'error'

@@ -1,29 +1,14 @@
-export function initMessages() {
-    wx.getStorage({
-        key: 'messages',
-        fail() {
-            wx.setStorage({
-                key: "messages",
-                data: "[]"
-            })
-        }
-    })
-}
-export function flushMessages(that) {
-    wx.getStorage({
-        key: 'messages',
-        success({ data }) {
-            // console.log('messages_str: ', data);
-            const messages = JSON.parse(data)
-            that.setData({
-                messages
-            })
-        }
-    })
+export function clearMessages(that) {
+    that.setData({ messages: [] })
+    wx.setStorageSync('messages', JSON.stringify('[]'))
 }
 
-export function clearMessages(that) {
-    that.setData({
-        messages: []
-    })
+export function saveMessages(that) {
+    const messages = that.data.messages
+    wx.setStorageSync('messages', JSON.stringify(messages))
+}
+
+export function loadMessages(that) {
+    const messages = wx.getStorageSync('messages')
+    that.setData({ messages: JSON.parse(messages) })
 }

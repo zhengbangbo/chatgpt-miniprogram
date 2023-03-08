@@ -19,7 +19,6 @@ Page({
         wx.getStorage({
             key: "prompts",
             success({ data }) {
-                console.log(data);
                 const result = data.reduce((acc, cur) => {
                     const { id, name, category, description } = cur;
                     const foundCategory = acc.find((item) => item.title === category);
@@ -33,7 +32,6 @@ Page({
                     []
                 );
                 that.setData({ categories: result })
-                console.log(result);
             }
         })
     },

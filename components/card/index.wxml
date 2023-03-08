@@ -6,6 +6,5 @@
     indicator
     model:value="{{content}}"
     disableDefaultPadding="{{true}}"
-    bindchange="onChange"
   />
 </view>
