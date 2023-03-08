@@ -3,7 +3,7 @@
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <text class="title">{{title}}</text>
     <text class="description">{{description}} </text>
-    <card askText="{{askText}}" maxLength="{{-1}}" />
+    <card model:content="{{askText}}" maxLength="{{-1}}" />
     <t-button bind:send="handleSend" text="发送" loading="{{loading}}"></t-button>
     <block wx:if="{{showContent}}">
         <result content="{{content}}" />

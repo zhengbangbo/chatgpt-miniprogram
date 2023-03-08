@@ -1,11 +1,8 @@
 Component({
     properties: {
-        askText: String,
+        content: String,
         maxLength: Number
     },
     methods: {
-        onChange: function (element) {
-            wx.setStorageSync('askText', element.detail.value)
-        }
     }
 });

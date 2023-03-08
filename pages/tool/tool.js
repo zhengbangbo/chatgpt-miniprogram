@@ -103,12 +103,7 @@ Page({
         this.setData({
             loading: true,
         })
-        wx.getStorage({
-            key: "askText",
-            success({ data }) {
-                postPrompt(that, that.data.id, data)
-            }
-        })
+        postPrompt(that, that.data.id, that.data.askText)
     },
     handleCopy() {
         const that = this

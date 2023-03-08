@@ -91,9 +91,10 @@ Page({
         try {
             console.log('Send');
             const token = wx.getStorageSync('token')
-            const askText = wx.getStorageSync('askText')
+            // const askText = wx.getStorageSync('askText')
+            const askText = this.data.askText
 
-            if (askText === '') {
+            if (this.data.askText === '') {
                 throw Error('请输入文字')
             }
             const old_messages = JSON.parse(wx.getStorageSync('messages'))

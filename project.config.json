@@ -1,7 +1,12 @@
 {
     "description": "项目配置文件",
     "packOptions": {
-        "ignore": [],
+        "ignore": [
+            {
+                "value": "/minitest",
+                "type": "folder"
+            }
+        ],
         "include": []
     },
     "setting": {
@@ -105,5 +110,6 @@
                 }
             ]
         }
-    }
+    },
+    "testRoot": "minitest/"
 }

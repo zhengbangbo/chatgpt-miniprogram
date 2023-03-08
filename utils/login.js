@@ -68,7 +68,8 @@ function getToken() {
                 }
             })
         },
-        fail() {
+        fail(err) {
+            console.log(err);
             wx.showToast({
                 title: '网络异常',
                 icon: 'error'

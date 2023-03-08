@@ -4,8 +4,8 @@ import { initMessages } from './utils/messages'
 
 App({
     onLaunch() {
-        initMessages();
         login();
+        initMessages();
         getPrompts();
     },
     onShow() {
