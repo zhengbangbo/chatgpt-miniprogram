@@ -4,7 +4,7 @@
     <text class="title">{{title}}</text>
     <text class="description">{{description}} </text>
     <card model:content="{{askText}}" maxLength="{{-1}}" />
-    <t-button bind:send="handleSend" text="发送" loading="{{loading}}"></t-button>
+    <t-button bind:send="handleWsSend" text="发送" loading="{{loading}}"></t-button>
     <block wx:if="{{showContent}}">
         <result content="{{content}}" />
         <t-button bind:copy="handleCopy" text="复制" loading="{{loading}}"></t-button>

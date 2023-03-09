@@ -1,7 +1,8 @@
-import { clearMessages, saveMessages,loadMessages } from '../../utils/messages'
+import { clearMessages, saveMessages, loadMessages } from '../../utils/messages'
 import { loadToken } from '../../utils/token'
 import { BACKEND_URL_BASE } from '../../utils/config'
 import { initNotice } from '../../utils/notice'
+import WxSocket from '../../utils/wxsocket'
 
 // pages/ask/ask.js
 Page({
@@ -23,6 +24,25 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
+        // this.socket = new WxSocket({
+        //     url: 'ws://localhost:4897/ws'
+        // })
+
+        // this.socket.on('open', () => {
+        //     console.log('WebSocket 已连接')
+        // })
+
+        // this.socket.on('message', (data) => {
+        //     console.log('收到消息：', data)
+        // })
+
+        // this.socket.on('close', (e) => {
+        //     console.log('WebSocket 已关闭：', e)
+        // })
+
+        // this.socket.on('error', (e) => {
+        //     console.log('WebSocket 出错：', e)
+        // })
     },
 
     /**
@@ -42,7 +62,7 @@ Page({
             loadToken(this)
             const token = wx.getStorageSync('token')
             if (this.data.token) {
-                this.setData({login: true})
+                this.setData({ login: true })
             }
         }
     },
@@ -58,6 +78,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
+        this.socket.close()
     },
 
     /**
@@ -82,6 +103,12 @@ Page({
             title: 'AI 智能问答',
             path: '/pages/ask/ask',
         };
+    },
+    WxSend() {
+        this.socket.send({
+            type: 'hello',
+            data: 'world'
+        })
     },
 
     Send() {

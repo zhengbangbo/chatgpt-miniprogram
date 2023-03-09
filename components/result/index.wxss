@@ -12,6 +12,10 @@
     line-height: 30rpx;
 }
 
+.result-item:hover {
+    background-color: rgba(00, 82, 217, 0.03)
+}
+
 .user {
     color: slategray
 }

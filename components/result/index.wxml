@@ -3,6 +3,7 @@
      value="{{content}}"
      maxlength="-1"
      auto-height
+     bindtap="handleTextTap"
      disabled>
     </textarea>
 </view>

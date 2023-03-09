@@ -1,4 +1,9 @@
 <!--pages/ask/ask.wxml-->
+<t-navbar class="custom-navbar">
+  <view slot="left">
+    <t-image t-class="custom-image" src="/assets/logo.png" aria-label="导航栏图片" />
+  </view>
+</t-navbar>
 <view class="page-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <view class="result-container" hidden="{{messages === '[]'}}">
@@ -9,7 +14,7 @@
         <card class="input-container" model:content="{{askText}}" maxLength="{{140}}" />
         <btn-group bind:send="Send" bind:clear="Clear" loading="{{loading}}" />
     </view>
-    <view class="more-container" bindtap="handleMore">
+    <!-- <view class="more-container" bindtap="handleMore">
         工具箱
-    </view>
+    </view> -->
 </view>

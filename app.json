@@ -12,10 +12,8 @@
     },
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#f6f6f6",
         "backgroundColor": "#f6f6f6",
-        "navigationBarTitleText": "TDesign",
-        "navigationBarTextStyle": "black"
+        "navigationStyle": "custom"
     },
     "sitemapLocation": "sitemap.json",
     "lazyCodeLoading": "requiredComponents"

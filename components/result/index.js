@@ -11,5 +11,10 @@ Component({
         }
     },
     methods: {
+        handleTextTap() {
+            wx.setClipboardData({
+              data: this.data.content,
+            })
+        }
     }
 });

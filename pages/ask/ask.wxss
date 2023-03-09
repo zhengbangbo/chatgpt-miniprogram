@@ -1,9 +1,18 @@
 /* pages/ask/ask.wxss */
+Page {
+    --td-navbar-color: #fff;
+    --td-navbar-bg-color: #f6f6f6;
+}
 .page-container {
     display: flex;
     flex-direction: column;
     max-height: 100vh;
+}
 
+.custom-image {
+    height: 100rpx;
+    width: 262rpx;
+    padding-left: 32rpx;
 }
 
 .result-container {

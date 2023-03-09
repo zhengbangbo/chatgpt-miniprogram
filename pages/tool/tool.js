@@ -1,6 +1,7 @@
 // pages/tool/tool.js
 import { postPrompt } from "../../utils/prompts"
 import { initNotice } from '../../utils/notice'
+import WxSocket from '../../utils/wxsocket'
 
 Page({
     /**
@@ -25,6 +26,30 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        
+        this.socket = new WxSocket({
+            url: 'ws://localhost:4897/ws'
+        })
+
+        this.socket.on('open', () => {
+            console.log('WebSocket 已连接')
+        })
+
+        this.socket.on('message', (data) => {
+            console.log('收到消息：', data)
+            this.setData({
+                content: this.data.content + data,
+                showContent: true
+            })
+        })
+
+        this.socket.on('close', (e) => {
+            console.log('WebSocket 已关闭：', e)
+        })
+
+        this.socket.on('error', (e) => {
+            console.log('WebSocket 出错：', e)
+        })
         const that = this
         const tool_id = parseInt(options.id)
         wx.getStorage({
@@ -72,7 +97,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-
+        this.socket.close()
     },
 
     /**
@@ -97,6 +122,13 @@ Page({
             title: `${this.data.title}`,
             path: `/pages/ask/ask?id=${this.data.id}`,
         };
+    },
+    handleWsSend() {
+        const r = {
+            id: 1,
+            messages: this.data.askText
+        }
+        this.socket.send(r)
     },
     handleSend() {
         const that = this

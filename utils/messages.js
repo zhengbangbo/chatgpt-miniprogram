@@ -10,5 +10,7 @@ export function saveMessages(that) {
 
 export function loadMessages(that) {
     const messages = wx.getStorageSync('messages')
-    that.setData({ messages: JSON.parse(messages) })
+    if(messages) {
+        that.setData({ messages: JSON.parse(messages) })
+    }
 }
