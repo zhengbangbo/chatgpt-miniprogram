@@ -1,4 +1,9 @@
 /* pages/tool/tool.wxss */
+Page {
+    --td-navbar-color: #fff;
+    --td-navbar-bg-color: #f6f6f6;
+}
+
 .tool-container {
     display: flex;
     flex-direction: column;

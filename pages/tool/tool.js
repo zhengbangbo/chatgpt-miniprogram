@@ -27,29 +27,29 @@ Page({
      */
     onLoad(options) {
         
-        this.socket = new WxSocket({
-            url: 'ws://localhost:4897/ws'
-        })
+        // this.socket = new WxSocket({
+        //     url: 'ws://localhost:4897/ws'
+        // })
 
-        this.socket.on('open', () => {
-            console.log('WebSocket 已连接')
-        })
+        // this.socket.on('open', () => {
+        //     console.log('WebSocket 已连接')
+        // })
 
-        this.socket.on('message', (data) => {
-            console.log('收到消息：', data)
-            this.setData({
-                content: this.data.content + data,
-                showContent: true
-            })
-        })
+        // this.socket.on('message', (data) => {
+        //     console.log('收到消息：', data)
+        //     this.setData({
+        //         content: this.data.content + data,
+        //         showContent: true
+        //     })
+        // })
 
-        this.socket.on('close', (e) => {
-            console.log('WebSocket 已关闭：', e)
-        })
+        // this.socket.on('close', (e) => {
+        //     console.log('WebSocket 已关闭：', e)
+        // })
 
-        this.socket.on('error', (e) => {
-            console.log('WebSocket 出错：', e)
-        })
+        // this.socket.on('error', (e) => {
+        //     console.log('WebSocket 出错：', e)
+        // })
         const that = this
         const tool_id = parseInt(options.id)
         wx.getStorage({
@@ -97,7 +97,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-        this.socket.close()
+        // this.socket.close()
     },
 
     /**

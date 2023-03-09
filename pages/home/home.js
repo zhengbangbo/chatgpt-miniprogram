@@ -5,7 +5,8 @@ Page({
     data: {
         extraClasses: '',
         versionInfo: "",
-        about: ""
+        about: "",
+        prompts: []
     },
     onShareAppMessage() {
         return {
@@ -23,11 +24,24 @@ Page({
                }) 
             }
         })
+        wx.getStorage({
+            key: 'prompts',
+            success({data}) {
+                that.setData({
+                    prompts: data
+                })
+            }
+        })
         const versionInfo = "当前版本：" + APP_VERSION
         this.setData({ versionInfo })
     },
     onShow: function () {
         setTabSelected(this, 1)
+    },
+    handleTapAsk() {
+        wx.navigateTo({
+          url: '/pages/ask/ask',
+        })
     },
     handleTapLogo: function () {
         if (this.data.extraClasses == 'logo-transition logo-moved') {

@@ -1,9 +1,5 @@
 <!--pages/ask/ask.wxml-->
-<t-navbar class="custom-navbar">
-  <view slot="left">
-    <t-image t-class="custom-image" src="/assets/logo.png" aria-label="导航栏图片" />
-  </view>
-</t-navbar>
+<navbar />
 <view class="page-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <view class="result-container" hidden="{{messages === '[]'}}">

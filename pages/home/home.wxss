@@ -4,7 +4,6 @@ page {
 
 .main {
     display: flex;
-    height: 100vh;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -14,6 +13,20 @@ page {
     padding-right: 32rpx;
     padding-top: 48rpx;
     padding-bottom: 240rpx;
+}
+
+.ask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18rpx;
+    font-size: 50rpx;
+    height: 200rpx;
+    width: calc(100% - 64rpx);
+    margin-bottom: 32rpx;
+    background-color: white;
+    margin-left: 32rpx;
+    margin-right: 32rpx;
 }
 
 .desc {
@@ -36,6 +49,10 @@ page {
 background: radial-gradient(circle, rgba(42,229,37,1) 0%, rgba(42,229,37,0.444437149859944) 31%, rgba(42,229,37,0) 62%);
 }
 
+.block {
+    overflow: scroll;
+}
+
 .logo {
     height: 296rpx;
     width: 296rpx;
@@ -47,9 +64,4 @@ background: radial-gradient(circle, rgba(42,229,37,1) 0%, rgba(42,229,37,0.44443
 
 .logo-moved {
     transform: rotateY(180deg);
-}
-
-.version-info {
-    position: absolute;
-    bottom: 30rpx;
 }
