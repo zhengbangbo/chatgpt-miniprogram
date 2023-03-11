@@ -1,4 +1,3 @@
-
 <view class="main">
     <view class="logo-container" bindtransitionend="transitionEnd">
         <image class="logo  {{extraClasses}}" bindtap="handleTapLogo" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
@@ -7,10 +6,18 @@
         AI 智能问答
     </view>
     <t-grid class="block" column="{{2}}" theme="card" hover>
-        <t-grid-item wx:for="{{prompts}}" wx:for-item="p" wx:key="index" text="{{p.name}}" url="/pages/tool/tool?id={{p.id}}"/>
+        <t-grid-item wx:for="{{prompts}}" wx:for-item="p" wx:key="index" text="{{p.name}}" url="/pages/tool/tool?id={{p.id}}" />
     </t-grid>
+    <view class="link">
+        <view bindtap="handleExplanation">
+            使用说明
+        </view>
+        <view bindtap="handleFeedback">
+            反馈
+        </view>
+    </view>
     <view class="desc">
-        <textarea value="{{about}}" auto-height disabled />
         <view class="version-info"> {{ versionInfo }} </view>
     </view>
+
 </view>

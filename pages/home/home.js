@@ -18,15 +18,15 @@ Page({
         const that = this
         wx.getStorage({
             key: 'about',
-            success({data}) {
-               that.setData({
-                   about: data
-               }) 
+            success({ data }) {
+                that.setData({
+                    about: data
+                })
             }
         })
         wx.getStorage({
             key: 'prompts',
-            success({data}) {
+            success({ data }) {
                 that.setData({
                     prompts: data
                 })
@@ -40,7 +40,7 @@ Page({
     },
     handleTapAsk() {
         wx.navigateTo({
-          url: '/pages/ask/ask',
+            url: '/pages/ask/ask',
         })
     },
     handleTapLogo: function () {
@@ -53,6 +53,32 @@ Page({
                 extraClasses: 'logo-transition logo-moved'
             })
         }
+    },
+    handleExplanation() {
+        wx.navigateToMiniProgram({
+            appId: 'wx5b97b0686831c076',
+            path: 'pages/preview/preview?fid=221600740977&sid=ciBtobPXuaT9&fname=%E3%80%8C%E5%B0%8F%E5%8D%9A%E6%9D%A5%E5%B8%AE%E4%BD%A0%E3%80%8D%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.otl&groupid=525258221',
+            envVersion: 'release',
+            success(res) {
+                // 打开成功
+            },
+            fail: function (e) {
+                console.log(e)
+            }
+        })
+    },
+    handleFeedback() {
+        wx.navigateToMiniProgram({
+            appId: 'wx53f22ed6915cdf17',
+            path: 'pages/form-write/form-write?scene=s%3D3rr2UG3Z%3Bspe%3Dksform',
+            envVersion: 'release',
+            success(res) {
+                // 打开成功
+            },
+            fail: function (e) {
+                console.log(e)
+            }
+        })
     }
 });
 

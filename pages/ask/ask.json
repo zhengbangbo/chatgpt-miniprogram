@@ -4,7 +4,7 @@
     "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
     "card": "/components/card",
     "btn-group": "./btn-group",
-    "navbar": "/components/navbar/navbar",
+    "navbar": "/components/navbar",
     "result": "/components/result"
   }
 }

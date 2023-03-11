@@ -7,6 +7,7 @@ App({
         getPrompts();
     },
     onShow() {
+
     }
 });
 
