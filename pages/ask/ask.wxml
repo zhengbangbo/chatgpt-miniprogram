@@ -7,7 +7,7 @@
         wx:key="index"/>
     </view>
     <view >
-        <card class="input-container" model:content="{{askText}}" maxLength="{{140}}" />
+        <card class="input-container" model:content="{{askText}}" maxLength="{{300}}" />
         <btn-group bind:send="Send" bind:clear="Clear" loading="{{loading}}" />
     </view>
     <!-- <view class="more-container" bindtap="handleMore">
