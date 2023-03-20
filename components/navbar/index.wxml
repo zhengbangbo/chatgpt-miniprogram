@@ -1,6 +1,0 @@
-<!--components/navbar/navbar.wxml-->
-<t-navbar class="custom-navbar" left-arrow>
-  <view slot="left">
-    <t-image t-class="custom-image" src="/assets/logo.png" aria-label="导航栏图片" />
-  </view>
-</t-navbar>

@@ -1,3 +1,4 @@
+import { setTabSelected } from "../../utils/tabBar"
 const image = 'https://tdesign.gtimg.com/miniprogram/images/example2.png';
 const items = new Array(12).fill({ label: '标题文字' }, 0, 12);
 
@@ -14,7 +15,7 @@ Page({
             path: '/pages/list/list',
         };
     },
-    onShow() {
+    onLoad() {
         const that = this
         wx.getStorage({
             key: "prompts",
@@ -32,12 +33,24 @@ Page({
                     []
                 );
                 that.setData({ categories: result })
+                const query = wx.createSelectorQuery().in(that);
+                const { sideBarIndex } = that.data;
+
+                query
+                    .selectAll('.title')
+                    .boundingClientRect((rects) => {
+                        that.offsetTopList = rects.map((item) => item.top);
+                        that.setData({ scrollTop: rects[sideBarIndex].top });
+                    })
+                    .exec();
             }
         })
     },
+    onShow() {
+        setTabSelected(this, 1)
+    },
     onSideBarChange(e) {
         const { value } = e.detail;
-
         this.setData({ sideBarIndex: value, scrollTop: this.offsetTopList[value] });
     },
     onScroll(e) {

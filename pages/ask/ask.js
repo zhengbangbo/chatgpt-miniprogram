@@ -2,7 +2,7 @@ import { clearMessages, saveMessages, loadMessages } from '../../utils/messages'
 import { loadToken } from '../../utils/token'
 import { BACKEND_URL_BASE } from '../../utils/config'
 import { initNotice } from '../../utils/notice'
-import WxSocket from '../../utils/wxsocket'
+import { setTabSelected } from "../../utils/tabBar"
 
 // pages/ask/ask.js
 Page({
@@ -56,6 +56,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        setTabSelected(this, 0)
         initNotice(this)
         loadMessages(this)
         if (!this.data.login) {

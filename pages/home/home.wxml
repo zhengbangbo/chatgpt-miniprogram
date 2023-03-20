@@ -2,12 +2,6 @@
     <view class="logo-container" bindtransitionend="transitionEnd">
         <image class="logo  {{extraClasses}}" bindtap="handleTapLogo" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
     </view>
-    <view class="ask" bindtap="handleTapAsk">
-        AI 智能问答
-    </view>
-    <t-grid class="block" column="{{2}}" theme="card" hover>
-        <t-grid-item wx:for="{{prompts}}" wx:for-item="p" wx:key="index" text="{{p.name}}" url="/pages/tool/tool?id={{p.id}}" />
-    </t-grid>
     <view class="link">
         <view bindtap="handleExplanation">
             使用说明

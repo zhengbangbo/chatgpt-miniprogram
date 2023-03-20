@@ -9,10 +9,12 @@ page .round-image {
 .side-bar-wrapper {
     display: flex;
     height: 100vh;
+    margin-bottom: 300rpx;
 }
 
 .side-bar-wrapper .content {
     flex: 1;
+    margin-bottom: 110rpx;
 }
 
 .side-bar-wrapper .section {
@@ -24,8 +26,3 @@ page .round-image {
     margin-bottom: 8rpx;
     line-height: 52rpx;
 }
-
-/* .t-grid-item {
-    width: 96rpx;
-    height: 96rpx;
-} */

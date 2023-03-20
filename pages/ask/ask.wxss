@@ -7,6 +7,7 @@ Page {
     display: flex;
     flex-direction: column;
     max-height: 100vh;
+    margin-bottom: 110rpx;
 }
 
 .custom-image {

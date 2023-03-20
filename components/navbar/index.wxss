@@ -1,6 +1,0 @@
-/* components/navbar/navbar.wxss */
-.custom-image {
-    height: 100rpx;
-    width: 262rpx;
-    padding-left: 32rpx;
-}

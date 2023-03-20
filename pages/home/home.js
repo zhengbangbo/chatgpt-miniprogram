@@ -1,4 +1,4 @@
-import { setTabSelected } from '../../utils/tabBar';
+import { setTabSelected } from "../../utils/tabBar"
 import { APP_VERSION } from '../../utils/config'
 
 Page({
@@ -6,11 +6,10 @@ Page({
         extraClasses: '',
         versionInfo: "",
         about: "",
-        prompts: []
     },
     onShareAppMessage() {
         return {
-            title: '更多功能',
+            title: '我的',
             path: '/pages/home/home',
         };
     },
@@ -36,7 +35,7 @@ Page({
         this.setData({ versionInfo })
     },
     onShow: function () {
-        setTabSelected(this, 1)
+        setTabSelected(this, 2)
     },
     handleTapAsk() {
         wx.navigateTo({

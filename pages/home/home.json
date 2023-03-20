@@ -3,7 +3,7 @@
     "t-grid": "tdesign-miniprogram/grid/grid",
     "t-grid-item": "tdesign-miniprogram/grid-item/grid-item"
   },
-  "navigationBarTitleText": "眼望四周阳光照",
+  "navigationBarTitleText": "小博来帮你",
   "navigationBarBackgroundColor": "#f6f6f6",
   "navigationBarTextStyle": "black",
   "backgroundColor": "#f6f6f6"

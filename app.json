@@ -1,10 +1,24 @@
 {
     "pages": [
-        "pages/home/home",
         "pages/ask/ask",
+        "pages/home/home",
         "pages/list/list",
         "pages/tool/tool"
     ],
+    "tabBar": {
+        "custom": true,
+        "list": [
+            {
+                "pagePath": "pages/ask/ask"
+            },
+            {
+                "pagePath": "pages/list/list"
+            },
+            {
+                "pagePath": "pages/home/home"
+            }
+        ]
+    },
     "subpackages": [],
     "usingComponents": {
         "t-button": "tdesign-miniprogram/button/button",
@@ -12,8 +26,10 @@
     },
     "window": {
         "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#f6f6f6",
         "backgroundColor": "#f6f6f6",
-        "navigationStyle": "custom"
+        "navigationBarTitleText": "TDesign",
+        "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json",
     "lazyCodeLoading": "requiredComponents"
