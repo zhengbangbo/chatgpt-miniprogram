@@ -56,9 +56,8 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        setTabSelected(this, 0)
-        initNotice(this)
         loadMessages(this)
+        initNotice(this)
         if (!this.data.login) {
             loadToken(this)
             const token = wx.getStorageSync('token')
@@ -66,6 +65,7 @@ Page({
                 this.setData({ login: true })
             }
         }
+        setTabSelected(this, 0)
     },
 
     /**
@@ -129,7 +129,6 @@ Page({
             const new_user_message = { "role": "user", "content": askText }
             const messages = [...old_messages, new_user_message]
 
-            console.log("messages:", messages);
             wx.request({
                 url: `${BACKEND_URL_BASE}/api/v1/ask`,
                 method: 'POST',

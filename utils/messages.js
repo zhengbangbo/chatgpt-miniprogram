@@ -5,6 +5,7 @@ export function clearMessages(that) {
 
 export function saveMessages(that) {
     const messages = that.data.messages
+    console.log('save messages: ', messages);
     wx.setStorageSync('messages', JSON.stringify(messages))
 }
 

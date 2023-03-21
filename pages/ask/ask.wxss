@@ -3,10 +3,14 @@ Page {
     --td-navbar-color: #fff;
     --td-navbar-bg-color: #f6f6f6;
 }
+
 .page-container {
     display: flex;
     flex-direction: column;
     max-height: 100vh;
+}
+
+.input-group{
     margin-bottom: 110rpx;
 }
 
