@@ -129,7 +129,7 @@ Page({
             const new_user_message = { "role": "user", "content": askText }
             const messages = [...old_messages, new_user_message]
 
-            console.log();
+            console.log("messages:", messages);
             wx.request({
                 url: `${BACKEND_URL_BASE}/api/v1/ask`,
                 method: 'POST',
