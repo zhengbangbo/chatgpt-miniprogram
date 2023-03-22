@@ -34,6 +34,20 @@ export function getSettings() {
     try {
         return JSON.parse(wx.getStorageSync('settings'))
     } catch (error) {
-        
+
+    }
+}
+
+export function initPageStyle(that) {
+    const { largeFontMode } = getSettings()
+    // 获取Page 中的data
+    if(largeFontMode) {
+        that.setData({
+            pageStyle: "--messages-font-size: 22px;"
+        })
+    }else{
+        that.setData({
+            pageStyle: "--messages-font-size: 16px;"
+        })
     }
 }

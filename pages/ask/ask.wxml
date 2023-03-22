@@ -1,4 +1,8 @@
 <!--pages/ask/ask.wxml-->
+<page-meta
+  page-style="{{pageStyle}}"
+>
+</page-meta>
 <view class="page-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <view class="result-container" hidden="{{messages === '[]'}}">

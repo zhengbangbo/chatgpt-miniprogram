@@ -1,12 +1,14 @@
 // pages/tool/tool.js
 import { postPrompt } from "../../utils/prompts"
 import { initNotice } from '../../utils/notice'
+import { initPageStyle } from "../../utils/settings"
 
 Page({
     /**
      * 页面的初始数据
      */
     data: {
+        pageStyle: "",
         isError: false,
         errorMessage: "",
         id: -1,
@@ -49,6 +51,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        initPageStyle(this)
         if (!this.data.login) {
             const token = wx.getStorageSync('token')
             if (token) {

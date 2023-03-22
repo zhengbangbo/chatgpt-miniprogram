@@ -3,6 +3,7 @@ import { loadToken } from '../../utils/token'
 import { BACKEND_URL_BASE } from '../../utils/config'
 import { initNotice } from '../../utils/notice'
 import { setTabSelected } from "../../utils/tabBar"
+import { initPageStyle } from '../../utils/settings'
 
 // pages/ask/ask.js
 Page({
@@ -10,6 +11,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        pageStyle: "",
         isError: false,
         errorMessage: "",
         loading: false,
@@ -56,6 +58,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+        initPageStyle(this)
         loadMessages(this)
         initNotice(this)
         if (!this.data.login) {

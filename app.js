@@ -3,6 +3,7 @@ import { getPrompts } from './utils/prompts';
 import { initSettings } from './utils/settings'
 
 App({
+    
     onLaunch() {
         const updateManager = wx.getUpdateManager()
 

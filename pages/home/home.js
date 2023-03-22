@@ -103,13 +103,15 @@ Page({
                     ...oldSettings,
                     largeFontMode: !oldMode
                 }
+                wx.setPageStyle({"--messages-font-size": `${newSettings.largeFontMode ? 22 : 16}px`})
+
                 console.log(newSettings);
                 wx.setStorage({
                     key: "settings",
                     data: JSON.stringify(newSettings)
                 })
             }
-        }) 
+        })
     },
 });
 

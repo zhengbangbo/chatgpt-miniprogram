@@ -1,4 +1,8 @@
 <!--pages/tool/tool.wxml-->
+<page-meta
+  page-style="{{pageStyle}}"
+>
+</page-meta>
 <view class="tool-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <text class="title">{{title}}</text>
