@@ -2,6 +2,9 @@
     <view class="logo-container" bindtransitionend="transitionEnd">
         <image class="logo  {{extraClasses}}" bindtap="handleTapLogo" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
     </view>
+    <t-cell title="大字模式" bordered="{{false}}">
+        <t-switch bindchange="handleLargeFontModeChange" value="{{largeFontMode}}" label="{{['小', '大']}}" slot="note" />
+    </t-cell>
     <view class="link">
         <view bindtap="handleExplanation">
             使用说明

@@ -26,3 +26,19 @@ page .round-image {
     margin-bottom: 8rpx;
     line-height: 52rpx;
 }
+
+.tool {
+    width: 80%;
+    padding: 20rpx;
+    border: 3rpx solid #0052d9;
+    border-radius: 20rpx;
+}
+
+.tool:hover {
+    background: #0052d9;
+}
+
+.tool > .name {
+    text-align: center;
+    font-size: 40rpx;
+}

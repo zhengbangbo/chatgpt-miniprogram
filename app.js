@@ -1,5 +1,6 @@
 import { login } from './utils/login'
 import { getPrompts } from './utils/prompts';
+import { initSettings } from './utils/settings'
 
 App({
     onLaunch() {
@@ -28,6 +29,7 @@ App({
         })
         login();
         getPrompts();
+        initSettings();
     },
     env: (function() {
         let { miniProgram } = wx.getAccountInfoSync()

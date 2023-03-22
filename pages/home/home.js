@@ -3,6 +3,7 @@ import { APP_VERSION } from '../../utils/config'
 
 Page({
     data: {
+        largeFontMode: false,
         extraClasses: '',
         versionInfo: "",
         about: "",
@@ -15,6 +16,15 @@ Page({
     },
     onLoad: function () {
         const that = this
+        wx.getStorage({
+            key: 'settings',
+            success({ data }) {
+                const { largeFontMode } = JSON.parse(data)
+                that.setData({
+                    largeFontMode
+                })
+            }
+        })
         wx.getStorage({
             key: 'about',
             success({ data }) {
@@ -78,7 +88,29 @@ Page({
                 console.log(e)
             }
         })
-    }
+    },
+    handleLargeFontModeChange() {
+        const oldMode = this.data.largeFontMode
+        this.setData({
+            largeFontMode: !oldMode
+        });
+        wx.getStorage({
+            key: "settings",
+            success({data}) {
+                const oldSettings = JSON.parse(data)
+                console.log(oldSettings);
+                const newSettings = {
+                    ...oldSettings,
+                    largeFontMode: !oldMode
+                }
+                console.log(newSettings);
+                wx.setStorage({
+                    key: "settings",
+                    data: JSON.stringify(newSettings)
+                })
+            }
+        }) 
+    },
 });
 
 //# sourceMappingURL=home.js.map
