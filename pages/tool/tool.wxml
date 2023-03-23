@@ -3,6 +3,9 @@
   page-style="{{pageStyle}}"
 >
 </page-meta>
+<view class="share-note">
+    ↑分享给好友
+</view>
 <view class="tool-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <text class="title">{{title}}</text>

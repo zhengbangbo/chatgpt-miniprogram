@@ -18,3 +18,24 @@ Page {
     font-size: 32rpx;
     padding: 12rpx 32rpx 32rpx 32rpx;
 }
+
+@keyframes move {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    50% {
+        transform: translate(0px, 5px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+.share-note {
+    color: gray;
+    font-size: 14px;
+    margin-right: 2px;
+    position: absolute;
+    right: 0;
+    animation: move 1s infinite;
+}
