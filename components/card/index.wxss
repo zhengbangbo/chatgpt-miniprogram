@@ -1,5 +1,5 @@
 .textarea-example {
-  margin: 0 32rpx;
+  margin: 12rpx 32rpx 0 32rpx;
   background-color: #fff;
   border-radius: 18rpx;
 }

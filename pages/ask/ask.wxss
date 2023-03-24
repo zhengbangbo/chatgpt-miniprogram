@@ -20,15 +20,6 @@ Page {
     padding-left: 32rpx;
 }
 
-.result-container {
-    display: flex;
-    border-radius: 10rpx;
-    flex-direction: column;
-    overflow-y: scroll;
-    width: 100vw;
-    margin: 10rpx 0;
-}
-
 .more-container {
     align-self: flex-end;
     justify-self: end;

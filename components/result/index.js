@@ -1,9 +1,10 @@
 Component({
-    data: {
-    },
     properties: {
-        role: String,
-        content: String
+        scrollViewHeight: Number,
+        scrollLast: String,
+        messages: Array,
+        content: String,
+        onStream: Boolean,
     },
     lifetimes: {
         attached() {
@@ -13,7 +14,7 @@ Component({
     methods: {
         handleTextTap() {
             wx.setClipboardData({
-              data: this.data.content,
+                data: this.data.content,
             })
         }
     }

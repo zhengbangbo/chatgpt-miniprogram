@@ -4,6 +4,7 @@ import { BACKEND_URL_BASE } from '../../utils/config'
 import { initNotice } from '../../utils/notice'
 import { setTabSelected } from "../../utils/tabBar"
 import { initPageStyle } from '../../utils/settings'
+import { websocketSend } from '../../utils/send'
 
 // pages/ask/ask.js
 Page({
@@ -11,47 +12,38 @@ Page({
      * 页面的初始数据
      */
     data: {
-        pageStyle: "",
-        isError: false,
-        errorMessage: "",
+        // 状态
         loading: false,
+        isError: false,
+        onStream: false,
+        scrollLast: "",
+
+        // 页面样式
+        pageStyle: "",
+        scrollViewHeight: 300,
+
+        // 数据
         messages: [],
+        errorMessage: "",
         askText: "",
-        yStart: 0,
+        content: "",
         token: "",
-        showTabBarFlag: true
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-        // this.socket = new WxSocket({
-        //     url: 'ws://localhost:4897/ws'
-        // })
-
-        // this.socket.on('open', () => {
-        //     console.log('WebSocket 已连接')
-        // })
-
-        // this.socket.on('message', (data) => {
-        //     console.log('收到消息：', data)
-        // })
-
-        // this.socket.on('close', (e) => {
-        //     console.log('WebSocket 已关闭：', e)
-        // })
-
-        // this.socket.on('error', (e) => {
-        //     console.log('WebSocket 出错：', e)
-        // })
+        let scrollViewHeight = getApp().getSystemInfo().windowHeight
+        this.setData({
+            scrollViewHeight,
+        })
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady() {
-
     },
 
     /**
@@ -60,10 +52,9 @@ Page({
     onShow() {
         initPageStyle(this)
         loadMessages(this)
-        initNotice(this)
+        // initNotice(this)
         if (!this.data.login) {
             loadToken(this)
-            const token = wx.getStorageSync('token')
             if (this.data.token) {
                 this.setData({ login: true })
             }
@@ -82,7 +73,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-        // this.socket.close()
+
     },
 
     /**
@@ -108,11 +99,8 @@ Page({
             path: '/pages/ask/ask',
         };
     },
-    WxSend() {
-        this.socket.send({
-            type: 'hello',
-            data: 'world'
-        })
+    WsSend() {
+        websocketSend(this)
     },
 
     Send() {

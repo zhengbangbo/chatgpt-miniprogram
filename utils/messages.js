@@ -1,20 +1,20 @@
 import { messages as dev_messages } from '../tests/messages/dev-default'
 export function clearMessages(that) {
     that.setData({ messages: [] })
-    wx.setStorageSync('messages', JSON.stringify('[]'))
+    wx.setStorageSync('messages', [])
 }
 
 export function saveMessages(that) {
     const messages = that.data.messages
     console.log('save messages: ', messages);
-    wx.setStorageSync('messages', JSON.stringify(messages))
+    wx.setStorageSync('messages', messages)
 }
 
 export function loadMessages(that) {
     try {
         const messages = wx.getStorageSync('messages')
         if (messages) {
-            that.setData({ messages: JSON.parse(messages) })
+            that.setData({ messages: messages })
         } else {
             // 开发环境下，使用测试数据
             if (wx.getAccountInfoSync().miniProgram.envVersion === "develop") {

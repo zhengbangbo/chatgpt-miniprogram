@@ -2,25 +2,31 @@
 import { postPrompt } from "../../utils/prompts"
 import { initNotice } from '../../utils/notice'
 import { initPageStyle } from "../../utils/settings"
+import { websocketSend } from '../../utils/send'
 
 Page({
     /**
      * 页面的初始数据
      */
     data: {
-        pageStyle: "",
+        // 状态
         isError: false,
+        showContent: false,
+        loading: false,
+
+        // 页面样式
+        pageStyle: "",
+        border: {
+            color: 'red',
+        },
+
+        // 数据
         errorMessage: "",
         id: -1,
         title: "",
         description: "",
-        showContent: false,
         content: "",
         askText: "",
-        loading: false,
-        border: {
-            color: 'red',
-        }
     },
 
     /**
@@ -38,6 +44,7 @@ Page({
                 that.setData({ id, title: name, description })
             }
         })
+
     },
 
     /**
@@ -60,22 +67,20 @@ Page({
                 })
             }
         }
-        initNotice(this)
-
+        // initNotice(this)
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide() {
-
+        this.socket.close()
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload() {
-        // this.socket.close()
     },
 
     /**
@@ -98,15 +103,11 @@ Page({
     onShareAppMessage() {
         return {
             title: `${this.data.title}`,
-            path: `/pages/ask/ask?id=${this.data.id}`,
+            path: `/pages/tool/tool?id=${this.data.id}`,
         };
     },
     handleWsSend() {
-        const r = {
-            id: 1,
-            messages: this.data.askText
-        }
-        this.socket.send(r)
+        websocketSend(this, true)
     },
     handleSend() {
         const that = this

@@ -39,3 +39,11 @@ Page {
     right: 0;
     animation: move 1s infinite;
 }
+
+.result-item {
+    max-width: 100%;
+    margin: 12rpx 32rpx 0 32rpx;
+    padding: 20rpx;
+    background-color: white;
+    border-radius: 10rpx;
+}

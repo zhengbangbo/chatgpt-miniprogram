@@ -1,16 +1,11 @@
 <!--pages/ask/ask.wxml-->
-<page-meta
-  page-style="{{pageStyle}}"
->
+<page-meta page-style="{{pageStyle}}">
 </page-meta>
 <view class="page-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
-    <view class="result-container" hidden="{{messages === '[]'}}">
-        <result  wx:for="{{messages}}" wx:for-item="msg" role="{{msg.role}}" content="{{msg.content}}"
-        wx:key="index"/>
-    </view>
+    <result scrollViewHeight="{{scrollViewHeight}}" messages="{{messages}}" content="{{content}}" onStream="{{onStream}}" scrollLast="{{scrollLast}}" />
     <view class="input-group">
         <card class="input-container" model:content="{{askText}}" maxLength="{{300}}" />
-        <btn-group bind:send="Send" bind:clear="Clear" loading="{{loading}}" />
+        <btn-group bind:send="WsSend" bind:clear="Clear" loading="{{loading}}" />
     </view>
 </view>
