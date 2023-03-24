@@ -11,12 +11,12 @@
     <text class="title">{{title}}</text>
     <text class="description">{{description}} </text>
     <view class="result-item">
-        <textarea class="text" model:value="{{askText}}" auto-height placeholder="输入一些内容..." />
+        <textarea model:value="{{askText}}" auto-height placeholder="输入一些内容..." />
     </view>
     <button-group bind:paste="handlePaste" bind:send="handleWsSend" text="发送" loading="{{loading}}" />
     <block wx:if="{{showContent}}">
         <view class="result-item">
-        <textarea class="text" value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled/>
+        <textarea value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled/>
         </view>
     </block>
 </view>

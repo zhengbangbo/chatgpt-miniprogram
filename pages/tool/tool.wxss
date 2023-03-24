@@ -1,15 +1,17 @@
 /* pages/tool/tool.wxss */
-Page {
-}
-
 .tool-container {
     display: flex;
     flex-direction: column;
     padding-bottom: 40rpx;
 }
 
-.text {
+textarea {
     min-width: 100%;
+    font-size: var(--messages-font-size);
+    line-height: var(--messages-font-size);
+}
+
+textarea::placeholder {
     font-size: var(--messages-font-size);
     line-height: var(--messages-font-size);
 }

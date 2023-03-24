@@ -5,7 +5,10 @@
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <result scrollViewHeight="{{scrollViewHeight}}" messages="{{messages}}" content="{{content}}" onStream="{{onStream}}" scrollLast="{{scrollLast}}" />
     <view class="input-group">
-        <card class="input-container" model:content="{{askText}}" maxLength="{{300}}" />
+        <!-- <card class="input-container" model:content="{{askText}}" maxLength="{{300}}" /> -->
+        <view class="result-item">
+            <textarea class="input"	placeholder-class="input" model:value="{{askText}}" auto-height placeholder="输入一些内容..." maxlength="{{300}}" />
+        </view>
         <btn-group bind:send="WsSend" bind:clear="Clear" loading="{{loading}}" />
     </view>
 </view>
