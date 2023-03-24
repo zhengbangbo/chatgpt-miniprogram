@@ -9,21 +9,3 @@ Page {
     flex-direction: column;
     max-height: 100vh;
 }
-
-.input-group{
-    margin-bottom: 110rpx;
-}
-
-.custom-image {
-    height: 100rpx;
-    width: 262rpx;
-    padding-left: 32rpx;
-}
-
-.more-container {
-    align-self: flex-end;
-    justify-self: end;
-    padding: 5rpx 32rpx 10rpx 32rpx;
-    color: rgb(243, 240, 74);
-    text-shadow: 0 0 10rpx #fff, 0 0 20rpx #00f, 0 0 30rpx #fff, 0 0 40rpx #00f;
-}

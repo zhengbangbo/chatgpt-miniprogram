@@ -106,6 +106,17 @@ Page({
             path: `/pages/tool/tool?id=${this.data.id}`,
         };
     },
+    handlePaste() {
+        console.log("paste");
+        const that = this
+        wx.getClipboardData({
+            success({ data }) {
+                that.setData({
+                    askText: data
+                })
+            }
+        })
+    },
     handleWsSend() {
         websocketSend(this, true)
     },

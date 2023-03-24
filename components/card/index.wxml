@@ -2,7 +2,6 @@
   <t-textarea
     placeholder="输入一些内容..."
     maxlength="{{maxLength}}"
-    autosize
     indicator
     model:value="{{content}}"
     disableDefaultPadding="{{true}}"

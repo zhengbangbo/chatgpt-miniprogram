@@ -7,6 +7,7 @@ Page {
 .tool-container {
     display: flex;
     flex-direction: column;
+    padding-bottom: 40rpx;
 }
 
 .title {
@@ -17,6 +18,11 @@ Page {
 .description {
     font-size: 32rpx;
     padding: 12rpx 32rpx 32rpx 32rpx;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
 }
 
 @keyframes move {

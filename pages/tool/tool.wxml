@@ -11,11 +11,10 @@
     <text class="title">{{title}}</text>
     <text class="description">{{description}} </text>
     <card model:content="{{askText}}" maxLength="{{-1}}" />
-    <t-button bind:send="handleWsSend" text="发送" loading="{{loading}}"></t-button>
+    <button-group bind:paste="handlePaste" bind:send="handleWsSend" text="发送" loading="{{loading}}" />
     <block wx:if="{{showContent}}">
         <view class="result-item">
-        <textarea value="{{content}}" maxlength="-1" auto-height disabled/>
+        <textarea value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled/>
         </view>
-        <t-button bind:copy="handleCopy" text="复制" loading="{{loading}}"></t-button>
     </block>
 </view>

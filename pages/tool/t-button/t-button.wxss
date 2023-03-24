@@ -1,4 +1,0 @@
-/* pages/tool/t-button/t-button.wxss */
-.button-container {
-    padding: 15rpx 32rpx 15rpx 32rpx;
-}

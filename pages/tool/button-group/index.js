@@ -4,7 +4,6 @@ Component({
      * 组件的属性列表
      */
     properties: {
-        text: String,
         loading: Boolean
     },
 
@@ -19,12 +18,13 @@ Component({
      * 组件的方法列表
      */
     methods: {
-        handleTap() {
-           if( this.data.text === "发送") {
-               this.triggerEvent("send")
-           } else if (this.data.text === "复制") {
-               this.triggerEvent("copy")
-           }
+        handleSend() {
+            console.log('send');
+            this.triggerEvent('send')
+        },
+        handlePaste() {
+            console.log('paste');
+            this.triggerEvent('paste')
         }
     }
 })
