@@ -18,30 +18,45 @@ export function websocketSend(that, oneTime = false) {
     that.socket.on('open', () => {
         console.log('WebSocket 已连接')
         if (oneTime) {
-            const messages = [
-                { "role": "user", "content": that.data.askText }
-            ]
-            const r = {
-                id: that.data.id,
-                messages
+            if (!that.data.askText) {
+                that.socket.close({
+                    code: '3003',
+                    reason: '消息不能为空'
+                })
+            } else {
+                const messages = [
+                    { "role": "user", "content": that.data.askText }
+                ]
+                const r = {
+                    id: that.data.id,
+                    messages
+                }
+                that.socket.send(r)
+
             }
-            that.socket.send(r)
         } else {
-            const messages = [
-                ...that.data.messages,
-                { "role": "user", "content": that.data.askText }
-            ]
-            const scrollLast = `msg${that.data.messages.length + 1}`
-            that.setData({
-                scrollLast,
-                messages,
-                askText: ""
-            })
-            const r = {
-                id: 1,
-                messages
+            if (!that.data.askText) {
+                that.socket.close({
+                    code: '3003',
+                    reason: '消息不能为空'
+                })
+            } else {
+                const messages = [
+                    ...that.data.messages,
+                    { "role": "user", "content": that.data.askText }
+                ]
+                const scrollLast = `msg${that.data.messages.length + 1}`
+                that.setData({
+                    scrollLast,
+                    messages,
+                    askText: ""
+                })
+                const r = {
+                    id: 1,
+                    messages
+                }
+                that.socket.send(r)
             }
-            that.socket.send(r)
         }
     })
 

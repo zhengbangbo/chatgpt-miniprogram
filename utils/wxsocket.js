@@ -44,8 +44,8 @@ class WxSocket {
       })
     }
 
-    close() {
-      this.socket.close()
+    close(obj) {
+      this.socket.close(obj)
     }
 
     /**

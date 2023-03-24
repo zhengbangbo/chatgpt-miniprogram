@@ -10,11 +10,13 @@
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <text class="title">{{title}}</text>
     <text class="description">{{description}} </text>
-    <card model:content="{{askText}}" maxLength="{{-1}}" />
+    <view class="result-item">
+        <textarea class="text" model:value="{{askText}}" auto-height placeholder="输入一些内容..." />
+    </view>
     <button-group bind:paste="handlePaste" bind:send="handleWsSend" text="发送" loading="{{loading}}" />
     <block wx:if="{{showContent}}">
         <view class="result-item">
-        <textarea value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled/>
+        <textarea class="text" value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled/>
         </view>
     </block>
 </view>
