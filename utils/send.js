@@ -11,6 +11,9 @@ export function websocketSend(that, oneTime = false) {
             'x-token': token
         },
     })
+    that.setData({
+        loading: true
+    })
 
     that.socket.on('open', () => {
         console.log('WebSocket 已连接')
@@ -18,9 +21,6 @@ export function websocketSend(that, oneTime = false) {
             const messages = [
                 { "role": "user", "content": that.data.askText }
             ]
-            that.setData({
-                loading: true,
-            })
             const r = {
                 id: that.data.id,
                 messages
@@ -32,9 +32,7 @@ export function websocketSend(that, oneTime = false) {
                 { "role": "user", "content": that.data.askText }
             ]
             const scrollLast = `msg${that.data.messages.length + 1}`
-            console.log('scrollLast: ', scrollLast);
             that.setData({
-                loading: true,
                 scrollLast,
                 messages,
                 askText: ""
@@ -67,6 +65,9 @@ export function websocketSend(that, oneTime = false) {
 
     that.socket.on('close', ({ code, reason }) => {
         console.log('WebSocket 已关闭: ', code, reason)
+        that.setData({
+            loading: false
+        })
         if (oneTime) {
             if (code >= 1000 && code <= 1011) {
                 if (code === 1006) {
@@ -75,21 +76,12 @@ export function websocketSend(that, oneTime = false) {
                         icon: 'error'
                     })
                 }
-                that.setData({
-                    loading: false,
-                })
             } else if (code >= 3000 && code <= 3999) {
-                that.setData({
-                    loading: false,
-                })
                 wx.showToast({
                     title: reason,
                     icon: 'error'
                 })
             } else if (code >= 4000 && code <= 4999) {
-                that.setData({
-                    loading: false,
-                })
                 wx.showToast({
                     title: reason,
                     icon: 'success'
@@ -116,14 +108,12 @@ export function websocketSend(that, oneTime = false) {
                     })
                 }
                 that.setData({
-                    loading: false,
                     onStream: false,
                     content: "",
                     messages,
                 })
             } else if (code >= 3000 && code <= 3999) {
                 that.setData({
-                    loading: false,
                     onStream: false,
                 })
                 wx.showToast({
@@ -132,7 +122,6 @@ export function websocketSend(that, oneTime = false) {
                 })
             } else if (code >= 4000 && code <= 4999) {
                 that.setData({
-                    loading: false,
                     onStream: false,
                     askText: "",
                     content: "",
@@ -148,10 +137,8 @@ export function websocketSend(that, oneTime = false) {
                 })
 
                 that.setData({
-                    loading: false,
                     onStream: false,
                 })
-
             }
             console.log(`set: msg${that.data.messages.length + 2}`);
             that.setData({

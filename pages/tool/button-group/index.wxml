@@ -6,7 +6,7 @@
     <t-button class="send-button" wx:if="{{ !loading }}" theme="primary" size="large" bindtap="handleSend" block>
         <text class="button-text">发送</text>
     </t-button>
-    <t-button class="send-button" wx:else theme="primary" size="large" block bindtap="handleSend" disabled>
+    <t-button class="send-button" wx:else theme="primary" size="large" block disabled>
         <t-loading theme="spinner" size="40rpx" class="button-loading" />
     </t-button>
 </view>
