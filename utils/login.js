@@ -29,6 +29,10 @@ export function login() {
 
 }
 
+export function removeToken() {
+   wx.removeStorageSync('token')
+}
+
 export function getToken() {
     wx.login({
         success({ code }) {

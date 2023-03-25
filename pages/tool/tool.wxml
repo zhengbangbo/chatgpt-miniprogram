@@ -1,20 +1,20 @@
 <!--pages/tool/tool.wxml-->
-<page-meta
-  page-style="{{pageStyle}}" rootFontSize="{{rootFontSize}}"
->
+<page-meta page-style="{{pageStyle}}" rootFontSize="{{rootFontSize}}">
 </page-meta>
 <view class="tool-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
     <text class="title title-font-size">{{title}}</text>
     <text class="description sub-title-font-size">{{description}} </text>
     <view class="result-item">
-        <textarea bindfocus="handleFocus" bindblur="handleBlur" model:value="{{askText}}" auto-height />
+        <textarea bindfocus="handleFocus" bindinput="handleInput" bindblur="handleBlur" model:value="{{askText}}" auto-height />
         <text class="input-placeholder" hidden="{{!showTextareaPlaceholder}}">请输入一些内容...</text>
     </view>
-    <button-group bind:stop="handleStop" bind:paste="handlePaste" bind:send="handleWsSend" text="发送" loading="{{loading}}" />
+    <button-group bind:stop="handleStop" bind:paste="handlePaste" bind:send="handleWsSend" loading="{{loading}}" />
     <block wx:if="{{showContent}}">
         <view class="result-item">
-        <textarea value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled/>
+            <view bindinput="handleInput" value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled>
+                {{content}}
+            </view>
         </view>
     </block>
 </view>

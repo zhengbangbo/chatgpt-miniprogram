@@ -1,5 +1,4 @@
 import { clearMessages, saveMessages, loadMessages } from '../../utils/messages'
-import { loadToken } from '../../utils/token'
 import { setTabSelected } from "../../utils/tabBar"
 import { initPageStyle } from '../../utils/settings'
 import { websocketSend } from '../../utils/send'
@@ -24,7 +23,7 @@ Page({
         // 页面样式
         pageStyle: "",
         rootFontSize: "",
-        scrollViewHeight: 300,
+        scrollViewHeight: 900,
 
         // 数据
         messages: [],
@@ -56,6 +55,11 @@ Page({
         initPageStyle(this)
         loadMessages(this)
         setTabSelected(this, 0)
+        this.data.messages.length > 0 ? this.setData({
+            showIntro: false
+        }) : this.setData({
+            showIntro: true
+        })
     },
 
     /**
@@ -106,13 +110,13 @@ Page({
         clearMessages(this)
     },
     handleStop() {
-        this.setData({
-            loading: false,
-            onStream: false
-        })
         this.socket.close({
             code: 4000,
             reason: '手动中断'
+        })
+        this.setData({
+            loading: false,
+            onStream: false
         })
     },
     handleFeedback() {
@@ -131,7 +135,6 @@ Page({
         }
     },
     handleInput() {
-        console.log('input');
         if (this.data.askText.length >= 300) {
             wx.showToast({
                 title: '不能超过300字',

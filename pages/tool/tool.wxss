@@ -60,10 +60,14 @@ button.share-note {
 
 .result-item {
     max-width: 100%;
-    margin: 12rpx 32rpx 0 32rpx;
+    margin: 12rpx 32rpx 12rpx 32rpx;
     padding: 20rpx;
     background-color: white;
     border-radius: 10rpx;
+}
+
+.result-item:hover {
+    background-color: rgba(00, 82, 217, 0.03)
 }
 
 .title-font-size {
@@ -76,4 +80,9 @@ button.share-note {
 
 .text-font-size {
     font-size: 1rem;
+}
+
+.share-note {
+    padding: 0;
+    margin: 0;
 }

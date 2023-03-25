@@ -1,6 +1,5 @@
 {
   "component": true,
   "usingComponents": {
-    "t-textarea": "tdesign-miniprogram/textarea/textarea"
   }
 }

@@ -16,3 +16,7 @@
 .paste-button {
     width: calc(30% - 6rpx);
 }
+
+.button-text {
+    font-size: 1.2rem;
+}

@@ -1,5 +1,4 @@
 // pages/tool/tool.js
-import { postPrompt } from "../../utils/prompts"
 import { initPageStyle } from "../../utils/settings"
 import { websocketSend } from '../../utils/send'
 
@@ -60,7 +59,6 @@ Page({
      */
     onShow() {
         initPageStyle(this)
-        console.log(this.data.rootFontSize);
     },
 
     /**
@@ -133,4 +131,8 @@ Page({
             })
         }
     },
+    handleInput() {
+        // 仅仅用来解决下面的告警
+        // Do not have  handler in component: pages/tool/tool. Please make sure that  handler has been defined in pages/tool/tool.
+    }
 })

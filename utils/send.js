@@ -1,62 +1,148 @@
 import WxSocket from './wxsocket'
 import { WEBSOCKET_URL_BASE } from './config'
+import { removeToken } from './login'
+
+function addUserMessage(that) {
+    const messages = [
+        ...that.data.messages,
+        { "role": "user", "content": that.data.askText }
+    ]
+    that.setData({
+        messages,
+    })
+}
+
+function popMessagesReturnAskText(that) {
+    const messages = that.data.messages
+    const msg = messages.pop()
+    that.setData({
+        messages,
+        askText: msg.content
+    })
+}
+
+function popMessages(that) {
+    const messages = that.data.messages
+    messages.pop()
+    that.setData({
+        messages,
+    })
+}
+
+function addAssistantMessage(that) {
+    const messages = [
+        ...that.data.messages,
+        { "role": "assistant", "content": that.data.content }
+    ]
+    that.setData({
+        messages,
+    })
+}
+
+function returnInputClearUserMessage(that) {
+    // 数据
+    // askText 不变
+    // content 清空
+    // messages 不变
+    that.setData({
+        content: "",
+    })
+    popMessagesReturnAskText(that)
+}
+
+function clearInputKeepMessages(that) {
+    // 数据
+    // askText 清空
+    // content 清空
+    // messages 不变
+    that.setData({
+        askText: "",
+        content: "",
+    })
+    popMessages(that)
+}
+
+function saveContentToAssistantMessage(that) {
+    // 数据
+    // askText 清空
+    // content 不变
+    // messages 不变
+    addAssistantMessage(that)
+    that.setData({
+        askText: "",
+    })
+}
+
+
+function clearInputUpdateMessages(that) {
+    // 数据
+    // askText 清空
+    // content 清空
+    // messages 更新
+    const content = that.data.content.trim()
+
+    if (content.length > 0) {
+        addAssistantMessage(that)
+        that.setData({
+            askText: "",
+            content: "",
+        })
+    }
+}
+function scrollToLast(that) {
+    that.setData({
+        scrollLast: `msg${that.data.messages.length + 2}`
+    })
+}
+
 
 export function websocketSend(that, oneTime = false) {
+    if (!that.data.askText) {
+        wx.showToast({
+            title: '消息不能为空',
+            icon: 'error'
+        })
+        return
+    }
+    that.setData({
+        loading: true
+    })
+
     let content = ""
     const token = wx.getStorageSync('token')
     const url = `${WEBSOCKET_URL_BASE}/ws/v1/chat`
     that.socket = new WxSocket({
         url,
         header: {
+            'debug': 'hello world',
             'x-token': token
         },
-    })
-    that.setData({
-        loading: true
     })
 
     that.socket.on('open', () => {
         if (oneTime) {
-            if (!that.data.askText) {
-                that.socket.close({
-                    code: '3003',
-                    reason: '消息不能为空'
-                })
-            } else {
-                const messages = [
-                    { "role": "user", "content": that.data.askText }
-                ]
-                const r = {
-                    id: that.data.id,
-                    messages
-                }
-                that.socket.send(r)
+            const messages = [
+                { "role": "user", "content": that.data.askText }
+            ]
+            const r = {
+                id: that.data.id,
+                messages
+            }
+            that.socket.send(r)
 
-            }
         } else {
-            if (!that.data.askText) {
-                that.socket.close({
-                    code: '3003',
-                    reason: '消息不能为空'
-                })
-            } else {
-                const messages = [
-                    ...that.data.messages,
-                    { "role": "user", "content": that.data.askText }
-                ]
-                const scrollLast = `msg${that.data.messages.length + 1}`
-                that.setData({
-                    showIntro: false,
-                    scrollLast,
-                    messages,
-                    askText: ""
-                })
-                const r = {
-                    id: 1,
-                    messages
-                }
-                that.socket.send(r)
+            addUserMessage(that)
+            const scrollLast = `msg${that.data.messages.length + 1}`
+            that.setData({
+                showIntro: false,
+                scrollLast,
+                askText: ""
+            })
+            const r = {
+                id: 1,
+                messages: that.data.messages
             }
+            that.socket.send(r)
         }
     })
 
@@ -78,95 +164,66 @@ export function websocketSend(that, oneTime = false) {
     })
 
     that.socket.on('close', ({ code, reason }) => {
+        console.log("code: ", code, "reason: ", reason)
         that.setData({
-            loading: false
+            loading: false,
+            onStream: false
         })
-        if (oneTime) {
-            if (code >= 1000 && code <= 1011) {
-                if (code === 1006) {
-                    wx.showToast({
-                        title: '网络异常',
-                        icon: 'error'
-                    })
-                }
-            } else if (code >= 3000 && code <= 3999) {
+        switch (code) {
+            // 4000: "手动中断"
+            case 4000:
+                oneTime ? "" : saveContentToAssistantMessage(that)
+                break
+            // 1000: "成功",
+            case 1000:
+                oneTime ? "" : clearInputUpdateMessages(that)
+                break
+            // 4001: "token已过期",
+            case 4001:
+            // 4002: "token无效",
+            case 4002:
+                removeToken()
+            // 4011: "消息不能为空",
+            case 4011:
+            // 4021: "余额不足",
+            case 4021:
+            // 4051: "请求失败",
+            case 4051:
+                oneTime ? "" : returnInputClearUserMessage(that)
                 wx.showToast({
                     title: reason,
                     icon: 'error'
                 })
-            } else if (code >= 4000 && code <= 4999) {
+                break
+            // 1006: "未知错误",
+            case 1006:
+                oneTime ? "" : returnInputClearUserMessage(that)
                 wx.showToast({
-                    title: reason,
-                    icon: 'success'
-                })
-            } else {
-                wx.showToast({
-                    title: '服务器异常',
+                    title: '网络错误',
                     icon: 'error'
                 })
-                that.setData({
-                    loading: false,
-                })
-            }
-        } else {
-            if (code >= 1000 && code <= 1011) {
-                const content = str.trim(that.data.content)
-                const messages = [
-                    ...that.data.messages,
-                    { "role": "assistant", "content": content }
-                ]
-                if (code === 1006) {
-                    wx.showToast({
-                        title: '网络异常',
-                        icon: 'error'
-                    })
-                }
-                that.setData({
-                    onStream: false,
-                    content: "",
-                    messages,
-                })
-            } else if (code >= 3000 && code <= 3999) {
-                that.setData({
-                    onStream: false,
-                })
-                wx.showToast({
-                    title: reason,
-                    icon: 'error'
-                })
-            } else if (code >= 4000 && code <= 4999) {
-                const content = str.trim(that.data.content)
-                const messages = [
-                    ...that.data.messages,
-                    { "role": "assistant", "content": content }
-                ]
-                that.setData({
-                    onStream: false,
-                    askText: "",
-                    content: "",
-                    messages
-                })
+                break
+            // 4081: "投币成功",
+            case 4081:
+                oneTime ? "" : clearInputKeepMessages(that)
                 wx.showToast({
                     title: reason,
                     icon: 'success'
                 })
-            } else {
+                break
+            default:
+                oneTime ? "" : returnInputClearUserMessage(that)
                 wx.showToast({
-                    title: '服务器异常',
+                    title: reason,
                     icon: 'error'
                 })
-
-                that.setData({
-                    onStream: false,
-                })
-            }
-            that.setData({
-                scrollLast: `msg${that.data.messages.length + 2}`
-            })
         }
+        oneTime ? "" : scrollToLast(that)
     })
 
     that.socket.on('error', (e) => {
+        console.log('socket error', e)
+        oneTime ? "" : returnInputClearUserMessage(that)
     })
 
 }
