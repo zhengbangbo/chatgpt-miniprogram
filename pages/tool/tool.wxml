@@ -12,9 +12,7 @@
     <button-group bind:stop="handleStop" bind:paste="handlePaste" bind:send="handleWsSend" loading="{{loading}}" />
     <block wx:if="{{showContent}}">
         <view class="result-item">
-            <view bindinput="handleInput" value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled>
-                {{content}}
-            </view>
+            <wxParse bindinput="handleInput" nodes="{{content}}" bindtap="handleCopy" language="md"/>
         </view>
     </block>
 </view>

@@ -3,6 +3,6 @@
     "usingComponents": {
         "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
         "button-group": "./button-group",
-        "result": "/components/result"
+        "wxParse": "/components/wxParse/wxParse"
     }
 }

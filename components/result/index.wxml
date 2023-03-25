@@ -1,13 +1,9 @@
 <scroll-view style="height: calc({{scrollViewHeight}}px - 406rpx)" scroll-y scroll-into-view="{{scrollLast}}">
     <view class="result-item" wx:for="{{messages}}" wx:for-item="msg" wx:for-index="idx" wx:key="idx" id="msg{{idx+1}}">
-        <view class="text {{msg.role}}" bindtap="handleTextTap">
-        {{msg.content}}
-        </view>
+        <wxParse class="text {{msg.role}}" nodes="{{ msg.content }}" language="md" bindtap="handleTextTap" />
     </view>
     <view class="result-item" hidden="{{!onStream}}" id="msg{{messages.length + 1}}">
-        <view class="text assistant" bindtap="handleTextTap">
-        {{content}}
-        </view>
+        <wxParse class="text assistant" nodes="{{ content }}" language="md" bindtap="handleTextTap" />
     </view>
-    <view id="msg{{messages.length + 2}}" style="height: 1px"/>
+    <view id="msg{{messages.length + 2}}" style="height: 1px" />
 </scroll-view>
