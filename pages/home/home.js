@@ -90,6 +90,7 @@ Page({
                     data: JSON.stringify(newSettings),
                     success(){
                         initPageStyle(that)
+                        setTabSelected(that, 2)
                     }
                 })
             }

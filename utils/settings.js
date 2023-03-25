@@ -35,6 +35,11 @@ export function getSettings() {
     }
 }
 
+export function getLargeFontMode() {
+    const { largeFontMode } = getSettings()
+    return largeFontMode
+}
+
 export function initPageStyle(that) {
     const { largeFontMode } = getSettings()
     // 获取Page 中的data
