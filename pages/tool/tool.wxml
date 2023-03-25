@@ -6,7 +6,7 @@
     <text class="title title-font-size">{{title}}</text>
     <text class="description sub-title-font-size">{{description}} </text>
     <view class="result-item">
-        <textarea bindfocus="handleFocus" bindinput="handleInput" bindblur="handleBlur" model:value="{{askText}}" auto-height />
+        <textarea maxlength="{{-1}}" bindfocus="handleFocus" bindinput="handleInput" bindblur="handleBlur" model:value="{{askText}}" auto-height />
         <text class="input-placeholder" hidden="{{!showTextareaPlaceholder}}">请输入一些内容...</text>
     </view>
     <button-group bind:stop="handleStop" bind:paste="handlePaste" bind:send="handleWsSend" loading="{{loading}}" />

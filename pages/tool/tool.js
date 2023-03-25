@@ -97,9 +97,15 @@ Page({
         };
     },
     handlePaste() {
+        this.setData({
+            showTextareaPlaceholder: false
+        })
         const that = this
         wx.getClipboardData({
             success({ data }) {
+                console.log("从粘贴版中获得数据");
+                console.log(data);
+                console.log("数据长度：", data.length);
                 that.setData({
                     askText: data
                 })
