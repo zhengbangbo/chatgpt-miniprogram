@@ -2,7 +2,6 @@
   "navigationBarTitleText": "AI 智能问答",
   "usingComponents": {
     "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
-    "card": "/components/card",
     "btn-group": "./btn-group",
     "result": "/components/result"
   }

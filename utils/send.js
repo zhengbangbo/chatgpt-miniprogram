@@ -16,7 +16,6 @@ export function websocketSend(that, oneTime = false) {
     })
 
     that.socket.on('open', () => {
-        console.log('WebSocket 已连接')
         if (oneTime) {
             if (!that.data.askText) {
                 that.socket.close({
@@ -47,6 +46,7 @@ export function websocketSend(that, oneTime = false) {
                 ]
                 const scrollLast = `msg${that.data.messages.length + 1}`
                 that.setData({
+                    showIntro: false,
                     scrollLast,
                     messages,
                     askText: ""
@@ -61,7 +61,6 @@ export function websocketSend(that, oneTime = false) {
     })
 
     that.socket.on('message', (data) => {
-        console.log('收到消息：', data)
         content += data
         if (oneTime) {
             that.setData({
@@ -79,7 +78,6 @@ export function websocketSend(that, oneTime = false) {
     })
 
     that.socket.on('close', ({ code, reason }) => {
-        console.log('WebSocket 已关闭: ', code, reason)
         that.setData({
             loading: false
         })
@@ -112,9 +110,10 @@ export function websocketSend(that, oneTime = false) {
             }
         } else {
             if (code >= 1000 && code <= 1011) {
+                const content = str.trim(that.data.content)
                 const messages = [
                     ...that.data.messages,
-                    { "role": "assistant", "content": that.data.content }
+                    { "role": "assistant", "content": content }
                 ]
                 if (code === 1006) {
                     wx.showToast({
@@ -136,10 +135,16 @@ export function websocketSend(that, oneTime = false) {
                     icon: 'error'
                 })
             } else if (code >= 4000 && code <= 4999) {
+                const content = str.trim(that.data.content)
+                const messages = [
+                    ...that.data.messages,
+                    { "role": "assistant", "content": content }
+                ]
                 that.setData({
                     onStream: false,
                     askText: "",
                     content: "",
+                    messages
                 })
                 wx.showToast({
                     title: reason,
@@ -155,7 +160,6 @@ export function websocketSend(that, oneTime = false) {
                     onStream: false,
                 })
             }
-            console.log(`set: msg${that.data.messages.length + 2}`);
             that.setData({
                 scrollLast: `msg${that.data.messages.length + 2}`
             })
@@ -163,7 +167,6 @@ export function websocketSend(that, oneTime = false) {
     })
 
     that.socket.on('error', (e) => {
-        console.log('WebSocket 出错：', e)
     })
 
 }

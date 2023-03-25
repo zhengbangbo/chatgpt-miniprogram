@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "caseId": "dee4b515-67a2-4d6a-897c-427f6b3f44c9",
+    "caseName": "开启大字模式",
+    "remarks": "",
+    "version": "0.0.1",
+    "startTime": 1679682047464,
+    "endTime": 1679682053411,
+    "appid": "wx0bf222486deeda3f",
+    "casePath": "我的/",
+    "caseType": "normal"
+  },
+  "env": {
+    "wxapplibVersion": "2.20.2",
+    "devtoolsVersion": "1.06.2303060",
+    "openid": "o6zAJs59a_TLRiShilNWoulGLcTQ",
+    "entry": {
+      "path": "pages/home/home",
+      "query": "",
+      "scene": 1001
+    },
+    "mock": [
+      "none"
+    ],
+    "maxWaitFor": 10000,
+    "ignoreSelectors": [],
+    "mockAPIs": [],
+    "cleanCache": [
+      "storage"
+    ],
+    "groupTouch": true,
+    "replaySetting": {
+      "screenshot": "all"
+    },
+    "simulatorType": "wechat",
+    "device": "Nexus 6",
+    "recordAPIs": []
+  },
+  "commands": [
+    {
+      "layer": "tool",
+      "commandType": "operate",
+      "command": "startRecord",
+      "waitfor": 0,
+      "timeStamp": 1679682047464,
+      "desc": ""
+    },
+    {
+      "tagName": "view",
+      "command": "tap",
+      "target": "/view/view[2]/view/view[3]/view/view/view",
+      "value": null,
+      "path": "pages/home/home",
+      "text": "小",
+      "eventData": {
+        "detail": {},
+        "changedTouches": [
+          {
+            "clientX": 347.859375,
+            "clientY": 233.62496948242188,
+            "pageX": 347.859375,
+            "pageY": 233.62496948242188,
+            "radiusX": 11.5,
+            "radiusY": 11.5,
+            "screenX": 553.1786499023438,
+            "screenY": 433.4935302734375
+          }
+        ],
+        "touches": []
+      },
+      "targetCandidates": [
+        "/view/view[2]/view/view[3]/view/view/view"
+      ],
+      "timeStamp": 3324,
+      "waitfor": 3324,
+      "desc": "",
+      "commandType": "operate",
+      "layer": "pageframe"
+    },
+    {
+      "timeStamp": 5947,
+      "waitfor": 2623,
+      "desc": "",
+      "layer": "tool",
+      "commandType": "operate",
+      "command": "stopRecord"
+    }
+  ]
+}

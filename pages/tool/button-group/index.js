@@ -1,4 +1,6 @@
 // pages/tool/t-button/t-button.js
+import { getToken } from '../../../utils/login'
+
 Component({
     /**
      * 组件的属性列表
@@ -19,12 +21,26 @@ Component({
      */
     methods: {
         handleSend() {
-            console.log('send');
-            this.triggerEvent('send')
+            const that = this
+            wx.getStorage({
+                key: 'token',
+                success() {
+                    that.triggerEvent('send')
+                },
+                fail() {
+                    getToken()
+                    wx.showToast({
+                      title: '请重试',
+                      icon: 'success'
+                    })
+                }
+            })
         },
         handlePaste() {
-            console.log('paste');
             this.triggerEvent('paste')
+        },
+        handleStop() {
+            this.triggerEvent('stop')
         }
     }
 })

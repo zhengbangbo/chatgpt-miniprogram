@@ -8,8 +8,8 @@
 
 .text {
     min-width: 100%;
-    font-size: var(--messages-font-size);
-    line-height: var(--messages-font-size);
+    font-size: 1rem;
+    line-height: 1rem;
 }
 
 .result-item:hover {

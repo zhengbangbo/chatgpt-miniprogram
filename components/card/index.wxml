@@ -1,9 +1,0 @@
-<view class="textarea-example">
-  <t-textarea
-    placeholder="输入一些内容..."
-    maxlength="{{maxLength}}"
-    indicator
-    model:value="{{content}}"
-    disableDefaultPadding="{{true}}"
-  />
-</view>

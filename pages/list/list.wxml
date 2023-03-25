@@ -1,18 +1,20 @@
+<page-meta page-style="{{pageStyle}}" root-font-size="{{rootFontSize}}">
+</page-meta>
 <view class="side-bar-wrapper">
     <t-side-bar value="{{sideBarIndex}}" bind:change="onSideBarChange">
-        <t-side-bar-item wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" />
+        <t-side-bar-item style="font-size: 1.2rem;" wx:for="{{categories}}" wx:key="index" value="{{item.value || index}}" label="{{item.label}}" />
     </t-side-bar>
     <scroll-view class="content" scroll-y scroll-with-animation scroll-top="{{scrollTop}}" bind:scroll="onScroll">
         <view wx:for="{{categories}}" wx:key="index" class="section">
-            <view class="title">{{item.title || item.label}}</view>
+            <view class="title sub-title-font-size">{{item.title || item.label}}</view>
             <t-grid column="{{1}}" border="{{border}}">
                 <block wx:for="{{item.items}}" wx:key="index" wx:for-item="cargo">
                     <t-grid-item url="/pages/tool/tool?id={{cargo.id}}">
                         <view class="tool">
-                            <view class="name">
+                            <view class="name title-font-size" >
                                 {{ cargo.label }}
                             </view>
-                            <view class="description">
+                            <view class="description text-font-size">
                                 {{ cargo.description }}
                             </view>
                         </view>

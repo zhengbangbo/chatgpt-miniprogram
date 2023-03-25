@@ -1,6 +1,5 @@
 // pages/tool/tool.js
 import { postPrompt } from "../../utils/prompts"
-import { initNotice } from '../../utils/notice'
 import { initPageStyle } from "../../utils/settings"
 import { websocketSend } from '../../utils/send'
 
@@ -14,11 +13,13 @@ Page({
         showContent: false,
         loading: false,
 
+        // 微信小程序中 Textarea 的 placeholder font-size 在初始化的时候存在问题
+        // 采用自定义 placeholder 可以更加灵活得解决问题
+        showTextareaPlaceholder: true,
+
         // 页面样式
         pageStyle: "",
-        border: {
-            color: 'red',
-        },
+        rootFontSize: "",
 
         // 数据
         errorMessage: "",
@@ -59,22 +60,13 @@ Page({
      */
     onShow() {
         initPageStyle(this)
-        if (!this.data.login) {
-            const token = wx.getStorageSync('token')
-            if (token) {
-                this.setData({
-                    login: true,
-                })
-            }
-        }
-        // initNotice(this)
+        console.log(this.data.rootFontSize);
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
     onHide() {
-        this.socket.close()
     },
 
     /**
@@ -107,7 +99,6 @@ Page({
         };
     },
     handlePaste() {
-        console.log("paste");
         const that = this
         wx.getClipboardData({
             success({ data }) {
@@ -120,16 +111,26 @@ Page({
     handleWsSend() {
         websocketSend(this, true)
     },
-    handleSend() {
-        const that = this
-        this.setData({
-            loading: true,
-        })
-        postPrompt(that, that.data.id, that.data.askText)
-    },
     handleCopy() {
         const that = this
-        console.log("copy");
         wx.setClipboardData({ data: that.data.content })
-    }
+    },
+    handleStop() {
+        this.socket.close({
+            code: 4000,
+            reason: "手动中止"
+        })
+    },
+    handleFocus() {
+        this.setData({
+            showTextareaPlaceholder: false
+        })
+    },
+    handleBlur() {
+        if (this.data.askText.length == 0) {
+            this.setData({
+                showTextareaPlaceholder: true
+            })
+        }
+    },
 })

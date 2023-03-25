@@ -1,22 +1,23 @@
 <!--pages/tool/tool.wxml-->
 <page-meta
-  page-style="{{pageStyle}}"
+  page-style="{{pageStyle}}" rootFontSize="{{rootFontSize}}"
 >
 </page-meta>
-<view class="share-note">
-    ↑分享给好友
-</view>
 <view class="tool-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
-    <text class="title">{{title}}</text>
-    <text class="description">{{description}} </text>
+    <text class="title title-font-size">{{title}}</text>
+    <text class="description sub-title-font-size">{{description}} </text>
     <view class="result-item">
-        <textarea model:value="{{askText}}" auto-height placeholder="输入一些内容..." />
+        <textarea bindfocus="handleFocus" bindblur="handleBlur" model:value="{{askText}}" auto-height />
+        <text class="input-placeholder" hidden="{{!showTextareaPlaceholder}}">请输入一些内容...</text>
     </view>
-    <button-group bind:paste="handlePaste" bind:send="handleWsSend" text="发送" loading="{{loading}}" />
+    <button-group bind:stop="handleStop" bind:paste="handlePaste" bind:send="handleWsSend" text="发送" loading="{{loading}}" />
     <block wx:if="{{showContent}}">
         <view class="result-item">
         <textarea value="{{content}}" maxlength="-1" auto-height bindtap="handleCopy" disabled/>
         </view>
     </block>
 </view>
+<button class="share-note" open-type="share" plain>
+    ↑分享给好友
+</button>

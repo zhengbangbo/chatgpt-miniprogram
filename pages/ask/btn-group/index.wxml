@@ -5,7 +5,10 @@
     <t-button wx:else theme="primary" size="large" class="send-button" bindtap="handleSend" disabled>
             <t-loading theme="spinner" size="40rpx" class="button-loading" />
     </t-button>
-    <t-button theme="light" size="large" class="clear-button" bindtap="handleClear" >
+    <t-button wx:if="{{ !loading }}" theme="light" size="large" class="clear-button" bindtap="handleClear" >
         <text class="button-text">清空</text>
+    </t-button>
+    <t-button wx:else theme="light" size="large" class="clear-button" bindtap="handleStop" >
+        <text class="button-text">中断</text>
     </t-button>
 </view>

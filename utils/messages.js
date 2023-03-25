@@ -6,7 +6,6 @@ export function clearMessages(that) {
 
 export function saveMessages(that) {
     const messages = that.data.messages
-    console.log('save messages: ', messages);
     wx.setStorageSync('messages', messages)
 }
 
@@ -16,10 +15,10 @@ export function loadMessages(that) {
         if (messages) {
             that.setData({ messages: messages })
         } else {
-            // 开发环境下，使用测试数据
             if (wx.getAccountInfoSync().miniProgram.envVersion === "develop") {
-                console.log('load dev messages: ', dev_messages);
-                that.setData({ messages: dev_messages })
+                that.setData({ messages: [] })
+                // 开发环境下，使用测试数据
+                // that.setData({ messages: dev_messages })
             } else {
                 that.setData({ messages: [] })
             }

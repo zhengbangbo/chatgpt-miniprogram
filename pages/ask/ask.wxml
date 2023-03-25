@@ -1,14 +1,29 @@
 <!--pages/ask/ask.wxml-->
-<page-meta page-style="{{pageStyle}}">
+<page-meta page-style="{{pageStyle}}" root-font-size="{{rootFontSize}}">
 </page-meta>
 <view class="page-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
+
     <result scrollViewHeight="{{scrollViewHeight}}" messages="{{messages}}" content="{{content}}" onStream="{{onStream}}" scrollLast="{{scrollLast}}" />
     <view class="input-group">
-        <!-- <card class="input-container" model:content="{{askText}}" maxLength="{{300}}" /> -->
         <view class="result-item">
-            <textarea class="input"	placeholder-class="input" model:value="{{askText}}" auto-height placeholder="输入一些内容..." maxlength="{{300}}" />
+            <textarea class="input" model:value="{{askText}}" auto-height  bindinput="handleInput" bindfocus="handleFocus" bindblur="handleBlur" maxlength="{{300}}" />
+            <text class="input-placeholder" hidden="{{!showTextareaPlaceholder}}">请输入一些内容...</text>
         </view>
-        <btn-group bind:send="WsSend" bind:clear="Clear" loading="{{loading}}" />
+        <btn-group bind:stop="handleStop" bind:send="handleWsSend" bind:clear="handleClear" loading="{{loading}}" />
+    </view>
+</view>
+<view class="intro" hidden="{{!showIntro}}">
+    <view>
+        欢迎来到「小博来帮你」小程序
+    </view>
+    <view>
+        1. 你可以在下面的输入框中输入想要提的问题或任何想说的话，然后点击「发送」，AI 就会给你回答。
+    </view>
+    <view>
+        2. 你还可以点击最下面的选项栏中的「工具箱」，那里有一些实用的工具。
+    </view>
+    <view>
+        3. 如果你有任何意见，都可以<button plain open-type="contact" style="display: inline; border: 0; color: blue; padding: 0; margin: 0; font-size: inherit; line-height: inherit;">「联系我」</button>。
     </view>
 </view>

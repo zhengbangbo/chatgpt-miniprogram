@@ -5,24 +5,28 @@
     padding-bottom: 40rpx;
 }
 
-textarea {
-    min-width: 100%;
-    font-size: var(--messages-font-size);
-    line-height: var(--messages-font-size);
+.result-item {
+    position: relative;
 }
 
-textarea::placeholder {
-    font-size: var(--messages-font-size);
-    line-height: var(--messages-font-size);
+textarea {
+    min-width: 100%;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+
+.input-placeholder {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 20rpx;
 }
 
 .title {
-    font-size: 60rpx;
     padding: 12rpx 32rpx 32rpx 32rpx;
 }
 
 .description {
-    font-size: 32rpx;
     padding: 12rpx 32rpx 32rpx 32rpx;
 }
 
@@ -43,12 +47,14 @@ textarea::placeholder {
     }
 }
 
-.share-note {
+button.share-note {
+    position: absolute;
+    top: 0;
+    right: 0;
     color: gray;
+    border: 0;
     font-size: 14px;
     margin-right: 2px;
-    position: absolute;
-    right: 0;
     animation: move 1s infinite;
 }
 
@@ -58,4 +64,16 @@ textarea::placeholder {
     padding: 20rpx;
     background-color: white;
     border-radius: 10rpx;
+}
+
+.title-font-size {
+    font-size: 1.5rem;
+}
+
+.sub-title-font-size {
+    font-size: 1.2rem;
+}
+
+.text-font-size {
+    font-size: 1rem;
 }

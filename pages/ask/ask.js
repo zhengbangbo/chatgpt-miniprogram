@@ -1,7 +1,5 @@
 import { clearMessages, saveMessages, loadMessages } from '../../utils/messages'
 import { loadToken } from '../../utils/token'
-import { BACKEND_URL_BASE } from '../../utils/config'
-import { initNotice } from '../../utils/notice'
 import { setTabSelected } from "../../utils/tabBar"
 import { initPageStyle } from '../../utils/settings'
 import { websocketSend } from '../../utils/send'
@@ -13,13 +11,19 @@ Page({
      */
     data: {
         // 状态
+        showIntro: true,
         loading: false,
         isError: false,
         onStream: false,
         scrollLast: "",
 
+        // 微信小程序中 Textarea 的 placeholder font-size 在初始化的时候存在问题
+        // 采用自定义 placeholder 可以更加灵活得解决问题
+        showTextareaPlaceholder: true,
+
         // 页面样式
         pageStyle: "",
+        rootFontSize: "",
         scrollViewHeight: 300,
 
         // 数据
@@ -27,7 +31,6 @@ Page({
         errorMessage: "",
         askText: "",
         content: "",
-        token: "",
     },
 
     /**
@@ -52,13 +55,6 @@ Page({
     onShow() {
         initPageStyle(this)
         loadMessages(this)
-        // initNotice(this)
-        if (!this.data.login) {
-            loadToken(this)
-            if (this.data.token) {
-                this.setData({ login: true })
-            }
-        }
         setTabSelected(this, 0)
     },
 
@@ -99,108 +95,48 @@ Page({
             path: '/pages/ask/ask',
         };
     },
-    WsSend() {
+
+    handleWsSend() {
         websocketSend(this)
     },
-
-    Send() {
-        const that = this
-        try {
-            console.log('Send');
-            const token = wx.getStorageSync('token')
-            if (!token) {
-                throw Error('请稍等')
-            }
-            const askText = this.data.askText
-
-            if (this.data.askText === '') {
-                throw Error('请输入文字')
-            }
-            const old_messages = this.data.messages
-            const new_user_message = { "role": "user", "content": askText }
-            const messages = [...old_messages, new_user_message]
-
-            wx.request({
-                url: `${BACKEND_URL_BASE}/api/v1/ask`,
-                method: 'POST',
-                dataType: 'json',
-                enableHttp2: true,
-                data: {
-                    text: JSON.stringify(messages)
-                },
-                header: {
-                    'content-type': 'application/json',
-                    'x-token': token
-                },
-                success({ statusCode, data }) {
-                    if (statusCode == '200') {
-                        switch (data.code) {
-                            case 200:
-                                const new_assistant_message = {
-                                    "role": "assistant",
-                                    "content": data.data.answer
-                                }
-                                const new_messages = [...messages, new_assistant_message]
-                                that.setData({ messages: new_messages })
-                                break;
-                            case 1101:
-                            case 1102:
-                                wx.clearStorageSync("token")
-                                wx.showToast({
-                                    title: data.message,
-                                    icon: 'error'
-                                })
-                                break;
-                            case 2001:
-                                wx.showToast({
-                                    title: data.message,
-                                    icon: 'success'
-                                })
-                                break
-                            case 1201:
-                            case 1501:
-                            case 1502:
-                            default:
-                                wx.showToast({
-                                    title: data.message,
-                                    icon: 'error'
-                                })
-                                break;
-                        }
-                        that.setData({ loading: false, askText: "" })
-                        console.log(data);
-                    } else {
-                        console.log('发送ask请求报错');
-                        wx.showToast({
-                            title: '出错了',
-                            icon: 'error'
-                        })
-                        that.setData({ loading: false })
-                    }
-                },
-                fail() {
-                    wx.showToast({
-                        title: '出错了',
-                        icon: 'error'
-                    })
-                    that.setData({ loading: false })
-                }
-            })
-        } catch ({ message }) {
-            wx.showToast({
-                title: message,
-                icon: 'error'
-            })
-            that.setData({ loading: false })
-        } finally {
-        }
-    },
-    Clear() {
+    handleClear() {
+        this.setData({
+            showIntro: true
+        })
         clearMessages(this)
     },
-    handleMore() {
-        wx.navigateTo({
-            url: '/pages/list/list',
+    handleStop() {
+        this.setData({
+            loading: false,
+            onStream: false
         })
+        this.socket.close({
+            code: 4000,
+            reason: '手动中断'
+        })
+    },
+    handleFeedback() {
+        wx.openCustomerServiceChat()
+    },
+    handleFocus() {
+        this.setData({
+            showTextareaPlaceholder: false
+        })
+    },
+    handleBlur() {
+        if (this.data.askText.length == 0) {
+            this.setData({
+                showTextareaPlaceholder: true
+            })
+        }
+    },
+    handleInput() {
+        console.log('input');
+        if (this.data.askText.length >= 300) {
+            wx.showToast({
+                title: '不能超过300字',
+                icon: 'error'
+            })
+        }
     }
 })

@@ -1,10 +1,16 @@
 import { setTabSelected } from "../../utils/tabBar"
+import { initPageStyle } from "../../utils/settings"
+
 const image = 'https://tdesign.gtimg.com/miniprogram/images/example2.png';
 const items = new Array(12).fill({ label: '标题文字' }, 0, 12);
 
 Page({
     offsetTopList: [],
     data: {
+        // 页面样式
+        pageStyle: "",
+        rootFontSize: "",
+        
         sideBarIndex: 0,
         scrollTop: 0,
         categories: [],
@@ -47,6 +53,7 @@ Page({
         })
     },
     onShow() {
+        initPageStyle(this)
         setTabSelected(this, 1)
     },
     onSideBarChange(e) {

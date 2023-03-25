@@ -1,15 +1,18 @@
 Component({
     properties: {
-        scrollViewHeight: Number,
+        // 状态
         scrollLast: String,
+        onStream: Boolean,
+
+        // 页面样式
+        scrollViewHeight: Number,
+
+        // 数据
         messages: Array,
         content: String,
-        onStream: Boolean,
     },
     lifetimes: {
-        attached() {
-            // console.log(content);
-        }
+
     },
     methods: {
         handleTextTap() {

@@ -1,14 +1,11 @@
 export function initSettings() {
     try {
         const { fontSizeSetting } = wx.getSystemInfoSync()
-        console.log(fontSizeSetting);
         wx.getStorage({
             key: "settings",
             success() {
-                console.log("init settings success");
             },
             fail() {
-                console.log("init settings fail");
                 let settings = {}
                 if(fontSizeSetting > 17 ) {
                     settings = {
@@ -43,11 +40,13 @@ export function initPageStyle(that) {
     // 获取Page 中的data
     if(largeFontMode) {
         that.setData({
-            pageStyle: "--messages-font-size: 22px;"
+            // pageStyle: "--messages-font-size: 22px;",
+            rootFontSize: "22px"
         })
     }else{
         that.setData({
-            pageStyle: "--messages-font-size: 16px;"
+            // pageStyle: "--messages-font-size: 16px; font-size: 16px",
+            rootFontSize: "16px"
         })
     }
 }

@@ -3,13 +3,11 @@ import { getPrompts } from './utils/prompts';
 import { initSettings } from './utils/settings'
 
 App({
-    
     onLaunch() {
         const updateManager = wx.getUpdateManager()
 
         updateManager.onCheckForUpdate(function (res) {
             // 请求完新版本信息的回调
-            console.log(res.hasUpdate)
         })
 
         updateManager.onUpdateReady(function () {
@@ -27,12 +25,18 @@ App({
 
         updateManager.onUpdateFailed(function () {
             // 新版本下载失败
+            wx.showToast({
+                title: '下载失败',
+                icon: 'error'
+            })
         })
         login();
         getPrompts();
+    },
+    onShow() {
         initSettings();
     },
-    env: (function() {
+    env: (function () {
         let { miniProgram } = wx.getAccountInfoSync()
         return miniProgram.envVersion
     }()),

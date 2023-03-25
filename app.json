@@ -3,7 +3,8 @@
         "pages/ask/ask",
         "pages/home/home",
         "pages/list/list",
-        "pages/tool/tool"
+        "pages/tool/tool",
+        "pages/feedback/feedback"
     ],
     "tabBar": {
         "custom": true,

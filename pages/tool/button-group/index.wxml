@@ -1,7 +1,10 @@
 <!--pages/tool/t-button/t-button.wxml-->
 <view class="button-group">
-    <t-button class="paste-button" theme="light" size="large" bindtap="handlePaste">
+    <t-button wx:if="{{ !loading }}" class="paste-button" theme="light" size="large" bindtap="handlePaste">
         <text class="button-text">粘贴</text>
+    </t-button>
+    <t-button wx:else class="paste-button" theme="light" size="large" bindtap="handleStop">
+        <text class="button-text">中断</text>
     </t-button>
     <t-button class="send-button" wx:if="{{ !loading }}" theme="primary" size="large" bindtap="handleSend" block>
         <text class="button-text">发送</text>

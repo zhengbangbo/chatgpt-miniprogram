@@ -7,7 +7,6 @@ export function login() {
             wx.getStorage({
                 key: 'token',
                 success() {
-                    // console.log("token 存在");
                 },
                 fail() {
                     // token 已被清空或不存在
@@ -30,7 +29,7 @@ export function login() {
 
 }
 
-function getToken() {
+export function getToken() {
     wx.login({
         success({ code }) {
             wx.request({
@@ -69,7 +68,6 @@ function getToken() {
             })
         },
         fail(err) {
-            console.log(err);
             wx.showToast({
                 title: '网络异常',
                 icon: 'error'
