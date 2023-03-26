@@ -4,7 +4,7 @@
 <view class="page-container">
     <t-notice-bar visible="{{isError}}" theme="error" content="{{errorMessage}}"></t-notice-bar>
 
-    <result scrollViewHeight="{{scrollViewHeight}}" messages="{{messages}}" content="{{content}}" onStream="{{onStream}}" scrollLast="{{scrollLast}}" />
+    <result messages="{{messages}}" content="{{content}}" onStream="{{onStream}}" scrollLast="{{scrollLast}}" />
     <view class="input-group">
         <view class="result-item">
             <textarea class="input" model:value="{{askText}}" auto-height  bindinput="handleInput" bindfocus="handleFocus" bindblur="handleBlur" maxlength="{{300}}" />

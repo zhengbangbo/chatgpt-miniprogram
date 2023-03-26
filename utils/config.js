@@ -10,4 +10,4 @@ export const WEBSOCKET_URL_BASE = wx.getAccountInfoSync().miniProgram.envVersion
     : wx.getAccountInfoSync().miniProgram.envVersion === "trial"
         ? "wss://cg-api2.imzbb.cc"  // 体验版
         : "wss://cg-api2.imzbb.cc"; //正式版
-export const APP_VERSION = "0.5.2"
+export const APP_VERSION = "0.5.3"

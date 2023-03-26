@@ -23,7 +23,6 @@ Page({
         // 页面样式
         pageStyle: "",
         rootFontSize: "",
-        scrollViewHeight: 900,
 
         // 数据
         messages: [],
@@ -36,10 +35,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-        let scrollViewHeight = getApp().getSystemInfo().windowHeight
-        this.setData({
-            scrollViewHeight,
-        })
     },
 
     /**
@@ -121,7 +116,7 @@ Page({
     },
     handleTapTools() {
         wx.switchTab({
-          url: '/pages/list/list',
+            url: '/pages/list/list',
         })
     },
     handleFeedback() {
