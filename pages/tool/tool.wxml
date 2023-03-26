@@ -12,8 +12,9 @@
     <button-group bind:stop="handleStop" bind:paste="handlePaste" bind:send="handleWsSend" loading="{{loading}}" />
     <block wx:if="{{showContent}}">
         <view class="result-item">
-            <wxParse bindinput="handleInput" nodes="{{content}}" bindtap="handleCopy" language="md"/>
+            <wxParse bindinput="handleInput" nodes="{{content}}" language="md"/>
         </view>
+        <button bindtap="handleCopy">一键复制全文</button>
     </block>
 </view>
 <button class="share-note" open-type="share" plain>

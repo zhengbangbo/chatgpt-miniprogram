@@ -1,10 +1,10 @@
 <scroll-view style="height: calc(100vh - 96rpx - env(safe-area-inset-bottom) - 300rpx)" scroll-y scroll-into-view="{{scrollLast}}">
 <!-- 100vh - 96rpx（自定义的tabbar组件高度） - env(safe-area-inset-bottom)（适配苹果）- 300rpx（输入模块高度） -->
     <view class="result-item" wx:for="{{messages}}" wx:for-item="msg" wx:for-index="idx" wx:key="idx" id="msg{{idx+1}}">
-        <wxParse class="text {{msg.role}}" nodes="{{ msg.content }}" language="md" bindtap="handleTextTap" />
+        <wxParse class="text {{msg.role}}" nodes="{{ msg.content }}" language="md" />
     </view>
     <view class="result-item" hidden="{{!onStream}}" id="msg{{messages.length + 1}}">
-        <wxParse class="text assistant" nodes="{{ content }}" language="md" bindtap="handleTextTap" />
+        <wxParse class="text assistant" nodes="{{ content }}" language="md" />
     </view>
     <view id="msg{{messages.length + 2}}" style="height: 1px" />
 </scroll-view>
