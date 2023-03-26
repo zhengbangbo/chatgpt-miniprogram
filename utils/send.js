@@ -14,11 +14,13 @@ function addUserMessage(that) {
 
 function popMessagesReturnAskText(that) {
     const messages = that.data.messages
-    const msg = messages.pop()
-    that.setData({
-        messages,
-        askText: msg.content
-    })
+    if (messages.length > 0) {
+        const msg = messages.pop()
+        that.setData({
+            messages,
+            askText: msg.content
+        })
+    }
 }
 
 function popMessages(that) {
@@ -223,6 +225,10 @@ export function websocketSend(that, oneTime = false) {
 
     that.socket.on('error', (e) => {
         console.log('socket error', e)
+        if(e.errMsg === "未完成的操作") {
+            // 网络错误时
+            return 
+        }
         oneTime ? "" : returnInputClearUserMessage(that)
     })
 
