@@ -53,11 +53,6 @@ Page({
         initPageStyle(this)
         setTabSelected(this, 2)
     },
-    handleTapAsk() {
-        wx.navigateTo({
-            url: '/pages/ask/ask',
-        })
-    },
     handleTapLogo: function () {
         if (this.data.extraClasses == 'logo-transition logo-moved') {
             this.setData({
@@ -68,6 +63,15 @@ Page({
                 extraClasses: 'logo-transition logo-moved'
             })
         }
+    },
+    handleTapVersionLog() {
+        wx.navigateToMiniProgram({
+            appId: 'wx5b97b0686831c076',
+            path: 'pages/preview/preview?fid=224050826248&sid=chEQFL0vsLBG&fname=%E3%80%8C%E5%B0%8F%E5%8D%9A%E6%9D%A5%E5%B8%AE%E4%BD%A0%E3%80%8D%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.otl&groupid=525258221',
+            success(res) {
+              // 打开成功
+            }
+          })
     },
     handleLargeFontModeChange() {
         const that = this

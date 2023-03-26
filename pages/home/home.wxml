@@ -10,6 +10,7 @@
         </t-cell>
     </t-cell-group>
     <view class="desc">
+        <button class="version-log" bindtap="handleTapVersionLog">查看版本更新日志</button>
         <view class="version-info"> {{ versionInfo }} </view>
     </view>
 </view>
