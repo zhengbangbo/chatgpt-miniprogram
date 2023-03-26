@@ -18,12 +18,12 @@
         欢迎来到「小博来帮你」小程序
     </view>
     <view>
-        1. 你可以在下面的输入框中输入想要提的问题或任何想说的话，然后点击「发送」，AI 就会给你回答。
+        1. 下方输入框中输入问题或任何想说的话，点击「发送」，AI 就会给你回答。
     </view>
     <view>
-        2. 你还可以点击最下面的选项栏中的「工具箱」，那里有一些实用的工具。
+        2. 体验文章摘要、润色等功能，请点击下方选项栏中间的<button plain bindtap="handleTapTools" style="display: inline; border: 0; padding: 0; margin: 0; font-size: inherit; line-height: inherit;">「工具箱」</button>。
     </view>
     <view>
-        3. 如果你有任何意见，都可以<button plain open-type="contact" style="display: inline; border: 0; color: blue; padding: 0; margin: 0; font-size: inherit; line-height: inherit;">「联系我」</button>。
+        3. 如果你有任何意见，都可以<button open-type="contact" style="display: inline; border: 0; color: blue; padding: 0; margin: 0; font-size: inherit; line-height: inherit;">「联系我」</button>。
     </view>
 </view>

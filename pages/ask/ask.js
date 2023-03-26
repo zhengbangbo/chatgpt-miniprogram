@@ -119,6 +119,11 @@ Page({
             onStream: false
         })
     },
+    handleTapTools() {
+        wx.switchTab({
+          url: '/pages/list/list',
+        })
+    },
     handleFeedback() {
         wx.openCustomerServiceChat()
     },
