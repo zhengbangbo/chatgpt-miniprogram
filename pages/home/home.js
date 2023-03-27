@@ -1,6 +1,7 @@
 import { setTabSelected } from "../../utils/tabBar"
 import { APP_VERSION } from '../../utils/config'
 import { initPageStyle } from '../../utils/settings'
+import { getCoin } from "../../utils/user";
 
 Page({
     data: {
@@ -12,6 +13,9 @@ Page({
         extraClasses: '',
         versionInfo: "",
         about: "",
+
+        // 数据
+        coin: "加载中",
     },
     onShareAppMessage() {
         return {
@@ -30,28 +34,13 @@ Page({
                 })
             }
         })
-        wx.getStorage({
-            key: 'about',
-            success({ data }) {
-                that.setData({
-                    about: data
-                })
-            }
-        })
-        wx.getStorage({
-            key: 'prompts',
-            success({ data }) {
-                that.setData({
-                    prompts: data
-                })
-            }
-        })
         const versionInfo = "当前版本：" + APP_VERSION
         this.setData({ versionInfo })
     },
     onShow: function () {
         initPageStyle(this)
         setTabSelected(this, 2)
+        getCoin(this)
     },
     handleTapLogo: function () {
         if (this.data.extraClasses == 'logo-transition logo-moved') {
