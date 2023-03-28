@@ -40,7 +40,7 @@ Page({
     onShow: function () {
         initPageStyle(this)
         setTabSelected(this, 2)
-        getCoin(this)
+        // getCoin(this)
     },
     handleTapLogo: function () {
         if (this.data.extraClasses == 'logo-transition logo-moved') {

@@ -4,7 +4,7 @@
     <view class="logo-container" bindtransitionend="transitionEnd">
         <image class="logo  {{extraClasses}}" bindtap="handleTapLogo" mode="aspectFit" src="/assets/logo.png" aria-label="Logo" />
     </view>
-    <view>
+    <!-- <view>
         当前硬币数量
     </view>
     <view class="coin">
@@ -12,7 +12,7 @@
         <view>
             {{ coin }}
         </view>
-    </view>
+    </view> -->
     <t-cell-group theme="card" style="width: 100%;">
         <t-cell title="大字模式" bordered="{{false}}" style="font-size: 1.2rem;">
             <t-switch bindchange="handleLargeFontModeChange" value="{{largeFontMode}}" label="{{['小', '大']}}" slot="note" />

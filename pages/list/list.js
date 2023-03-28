@@ -54,7 +54,7 @@ Page({
                 },
             })
 
-        }, 1000)
+        }, 100)
     },
     onShow() {
         initPageStyle(this)

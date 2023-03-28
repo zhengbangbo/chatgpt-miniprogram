@@ -35,7 +35,7 @@ Page({
     onLoad(options) {
         const that = this
         const tool_id = parseInt(options.id)
-        setInterval(() => {
+        const ready = setInterval(() => {
             wx.getStorage({
                 key: "prompts",
                 success({ data }) {
@@ -46,7 +46,7 @@ Page({
                     clearInterval(ready)
                 }
             })
-        }, 1000)
+        }, 100)
     },
 
     /**
