@@ -10,7 +10,7 @@ Page({
         // 页面样式
         pageStyle: "",
         rootFontSize: "",
-        
+
         sideBarIndex: 0,
         scrollTop: 0,
         categories: [],
@@ -23,34 +23,38 @@ Page({
     },
     onLoad() {
         const that = this
-        wx.getStorage({
-            key: "prompts",
-            success({ data }) {
-                const result = data.reduce((acc, cur) => {
-                    const { id, name, category, description } = cur;
-                    const foundCategory = acc.find((item) => item.title === category);
-                    const newItem = { label: name, id, description };
-                    if (foundCategory) {
-                        foundCategory.items.push(newItem);
-                    } else {
-                        acc.push({ label: category, title: category, items: [newItem] });
-                    } return acc;
-                },
-                    []
-                );
-                that.setData({ categories: result })
-                const query = wx.createSelectorQuery().in(that);
-                const { sideBarIndex } = that.data;
+        const ready = setInterval(() => {
+            wx.getStorage({
+                key: "prompts",
+                success({ data }) {
+                    const result = data.reduce((acc, cur) => {
+                        const { id, name, category, description } = cur;
+                        const foundCategory = acc.find((item) => item.title === category);
+                        const newItem = { label: name, id, description };
+                        if (foundCategory) {
+                            foundCategory.items.push(newItem);
+                        } else {
+                            acc.push({ label: category, title: category, items: [newItem] });
+                        } return acc;
+                    },
+                        []
+                    );
+                    that.setData({ categories: result })
+                    const query = wx.createSelectorQuery().in(that);
+                    const { sideBarIndex } = that.data;
 
-                query
-                    .selectAll('.title')
-                    .boundingClientRect((rects) => {
-                        that.offsetTopList = rects.map((item) => item.top);
-                        that.setData({ scrollTop: rects[sideBarIndex].top });
-                    })
-                    .exec();
-            }
-        })
+                    query
+                        .selectAll('.title')
+                        .boundingClientRect((rects) => {
+                            that.offsetTopList = rects.map((item) => item.top);
+                            that.setData({ scrollTop: rects[sideBarIndex].top });
+                        })
+                        .exec();
+                    clearInterval(ready)
+                },
+            })
+
+        }, 1000)
     },
     onShow() {
         initPageStyle(this)

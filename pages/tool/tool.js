@@ -35,16 +35,18 @@ Page({
     onLoad(options) {
         const that = this
         const tool_id = parseInt(options.id)
-        wx.getStorage({
-            key: "prompts",
-            success({ data }) {
-                const prompts = data
-                const prompt = prompts.find(item => item.id === tool_id)
-                const { id, name, description } = prompt
-                that.setData({ id, title: name, description })
-            }
-        })
-
+        setInterval(() => {
+            wx.getStorage({
+                key: "prompts",
+                success({ data }) {
+                    const prompts = data
+                    const prompt = prompts.find(item => item.id === tool_id)
+                    const { id, name, description } = prompt
+                    that.setData({ id, title: name, description })
+                    clearInterval(ready)
+                }
+            })
+        }, 1000)
     },
 
     /**
