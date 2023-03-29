@@ -90,7 +90,7 @@ Page({
      */
     onShareAppMessage() {
         return {
-            title: 'AI 智能问答',
+            title: 'AI英语对话',
             path: '/pages/ask/ask',
         };
     },
@@ -135,9 +135,9 @@ Page({
         }
     },
     handleInput() {
-        if (this.data.askText.length >= 300) {
+        if (this.data.askText.length >= 1000) {
             wx.showToast({
-                title: '不能超过300字',
+                title: '不能超过1000字',
                 icon: 'error'
             })
         }

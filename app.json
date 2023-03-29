@@ -1,24 +1,7 @@
 {
     "pages": [
-        "pages/ask/ask",
-        "pages/home/home",
-        "pages/list/list",
-        "pages/tool/tool"
+        "pages/ask/ask"
     ],
-    "tabBar": {
-        "custom": true,
-        "list": [
-            {
-                "pagePath": "pages/ask/ask"
-            },
-            {
-                "pagePath": "pages/list/list"
-            },
-            {
-                "pagePath": "pages/home/home"
-            }
-        ]
-    },
     "subpackages": [],
     "usingComponents": {
         "t-button": "tdesign-miniprogram/button/button",

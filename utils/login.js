@@ -37,7 +37,7 @@ export function getToken() {
     wx.login({
         success({ code }) {
             wx.request({
-                url: `${BACKEND_URL_BASE}/api/v1/login`,
+                url: `${BACKEND_URL_BASE}/api/v2/login`,
                 data: { code },
                 method: 'POST',
                 success({ statusCode, data }) {

@@ -112,7 +112,7 @@ export function websocketSend(that, oneTime = false) {
 
     let content = ""
     const token = wx.getStorageSync('token')
-    const url = `${WEBSOCKET_URL_BASE}/ws/v1/chat`
+    const url = `${WEBSOCKET_URL_BASE}/ws/v2/chat`
     that.socket = new WxSocket({
         url,
         header: {

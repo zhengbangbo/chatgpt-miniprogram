@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "AI 智能问答",
+  "navigationBarTitleText": "AI英语对话",
   "usingComponents": {
     "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
     "btn-group": "./btn-group",

@@ -1,8 +1,0 @@
-{
-    "navigationBarTitleText": "AI 工具箱",
-    "usingComponents": {
-        "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
-        "button-group": "./button-group",
-        "wxParse": "/components/wxParse/wxParse"
-    }
-}

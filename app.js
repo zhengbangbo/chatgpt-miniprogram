@@ -1,5 +1,4 @@
 import { login } from './utils/login'
-import { getPrompts } from './utils/prompts';
 import { initSettings } from './utils/settings'
 
 App({
@@ -31,7 +30,6 @@ App({
             })
         })
         login();
-        getPrompts();
     },
     onShow() {
         initSettings();
